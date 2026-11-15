@@ -1,0 +1,20 @@
+# ===== Shadow Arena - Godot 4 project lives in /Game =====
+# Godot's import cache and editor state; regenerated on open. Never commit.
+/Game/.godot/
+/Game/android/
+*.translation
+*.tmp
+
+# Exported builds go here (Step 15) - too big for Git
+/Builds/
+
+# The Godot editor itself, if kept beside the project
+/Tools/
+
+# IDE / OS junk
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
