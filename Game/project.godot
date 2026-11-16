@@ -18,11 +18,20 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 InputSetup="*res://scripts/core/input_setup.gd"
+Sfx="*res://scripts/core/sfx.gd"
+Game="*res://scripts/core/game.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[navigation]
+
+world/map_use_async_iterations=false
+world/region_use_async_iterations=false
 
 [physics]
 

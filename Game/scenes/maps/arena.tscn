@@ -1,0 +1,2521 @@
+[gd_scene load_steps=113 format=3]
+
+[ext_resource type="Material" path="res://assets/materials/brick.tres" id="m_brick"]
+[ext_resource type="Material" path="res://assets/materials/concrete.tres" id="m_concrete"]
+[ext_resource type="Material" path="res://assets/materials/ground.tres" id="m_ground"]
+[ext_resource type="Material" path="res://assets/materials/metal_blue.tres" id="m_metal_blue"]
+[ext_resource type="Material" path="res://assets/materials/metal_green.tres" id="m_metal_green"]
+[ext_resource type="Material" path="res://assets/materials/metal_red.tres" id="m_metal_red"]
+[ext_resource type="Material" path="res://assets/materials/plaster.tres" id="m_plaster"]
+[ext_resource type="Material" path="res://assets/materials/ramp.tres" id="m_ramp"]
+[ext_resource type="Material" path="res://assets/materials/roof.tres" id="m_roof"]
+[ext_resource type="Material" path="res://assets/materials/wood.tres" id="m_wood"]
+
+[sub_resource type="BoxMesh" id="mesh_0"]
+size = Vector3(122, 1, 122)
+
+[sub_resource type="BoxShape3D" id="shape_0"]
+size = Vector3(122, 1, 122)
+
+[sub_resource type="BoxMesh" id="mesh_1"]
+size = Vector3(122, 6, 1)
+
+[sub_resource type="BoxShape3D" id="shape_1"]
+size = Vector3(122, 6, 1)
+
+[sub_resource type="BoxMesh" id="mesh_2"]
+size = Vector3(1, 6, 120)
+
+[sub_resource type="BoxShape3D" id="shape_2"]
+size = Vector3(1, 6, 120)
+
+[sub_resource type="BoxMesh" id="mesh_3"]
+size = Vector3(37, 4, 0.6)
+
+[sub_resource type="BoxShape3D" id="shape_3"]
+size = Vector3(37, 4, 0.6)
+
+[sub_resource type="BoxMesh" id="mesh_4"]
+size = Vector3(14, 4, 0.6)
+
+[sub_resource type="BoxShape3D" id="shape_4"]
+size = Vector3(14, 4, 0.6)
+
+[sub_resource type="BoxMesh" id="mesh_5"]
+size = Vector3(6, 2.6, 2.4)
+
+[sub_resource type="BoxShape3D" id="shape_5"]
+size = Vector3(6, 2.6, 2.4)
+
+[sub_resource type="BoxMesh" id="mesh_6"]
+size = Vector3(1.5, 1.2, 1.5)
+
+[sub_resource type="BoxShape3D" id="shape_6"]
+size = Vector3(1.5, 1.2, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_7"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="shape_7"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_8"]
+size = Vector3(8, 1.2, 4)
+
+[sub_resource type="BoxShape3D" id="shape_8"]
+size = Vector3(8, 1.2, 4)
+
+[sub_resource type="BoxMesh" id="mesh_9"]
+size = Vector3(8, 0.9, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_9"]
+size = Vector3(8, 0.9, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_10"]
+size = Vector3(2.4, 2.6, 6)
+
+[sub_resource type="BoxShape3D" id="shape_10"]
+size = Vector3(2.4, 2.6, 6)
+
+[sub_resource type="BoxMesh" id="mesh_11"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="BoxShape3D" id="shape_11"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="BoxMesh" id="mesh_12"]
+size = Vector3(2, 1.2, 2)
+
+[sub_resource type="BoxShape3D" id="shape_12"]
+size = Vector3(2, 1.2, 2)
+
+[sub_resource type="BoxMesh" id="mesh_13"]
+size = Vector3(1, 1.2, 1)
+
+[sub_resource type="BoxShape3D" id="shape_13"]
+size = Vector3(1, 1.2, 1)
+
+[sub_resource type="BoxMesh" id="mesh_14"]
+size = Vector3(1.6, 1.6, 1.6)
+
+[sub_resource type="BoxShape3D" id="shape_14"]
+size = Vector3(1.6, 1.6, 1.6)
+
+[sub_resource type="BoxMesh" id="mesh_15"]
+size = Vector3(4, 1.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="shape_15"]
+size = Vector3(4, 1.1, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_16"]
+size = Vector3(0.5, 1.1, 4)
+
+[sub_resource type="BoxShape3D" id="shape_16"]
+size = Vector3(0.5, 1.1, 4)
+
+[sub_resource type="BoxMesh" id="mesh_17"]
+size = Vector3(2, 1.4, 1)
+
+[sub_resource type="BoxShape3D" id="shape_17"]
+size = Vector3(2, 1.4, 1)
+
+[sub_resource type="BoxMesh" id="mesh_18"]
+size = Vector3(2.6, 2.8, 7)
+
+[sub_resource type="BoxShape3D" id="shape_18"]
+size = Vector3(2.6, 2.8, 7)
+
+[sub_resource type="BoxMesh" id="mesh_19"]
+size = Vector3(0.5, 3.5, 20)
+
+[sub_resource type="BoxShape3D" id="shape_19"]
+size = Vector3(0.5, 3.5, 20)
+
+[sub_resource type="BoxMesh" id="mesh_20"]
+size = Vector3(0.5, 3.5, 10)
+
+[sub_resource type="BoxShape3D" id="shape_20"]
+size = Vector3(0.5, 3.5, 10)
+
+[sub_resource type="BoxMesh" id="mesh_21"]
+size = Vector3(10.8, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_21"]
+size = Vector3(10.8, 3.2, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_22"]
+size = Vector3(4, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_22"]
+size = Vector3(4, 3.2, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_23"]
+size = Vector3(17.6, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_23"]
+size = Vector3(17.6, 3.2, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_24"]
+size = Vector3(0.4, 3.2, 7)
+
+[sub_resource type="BoxShape3D" id="shape_24"]
+size = Vector3(0.4, 3.2, 7)
+
+[sub_resource type="BoxMesh" id="mesh_25"]
+size = Vector3(0.4, 3.2, 5.8)
+
+[sub_resource type="BoxShape3D" id="shape_25"]
+size = Vector3(0.4, 3.2, 5.8)
+
+[sub_resource type="BoxMesh" id="mesh_26"]
+size = Vector3(0.4, 1, 2)
+
+[sub_resource type="BoxShape3D" id="shape_26"]
+size = Vector3(0.4, 1, 2)
+
+[sub_resource type="BoxMesh" id="mesh_27"]
+size = Vector3(0.4, 3.2, 14.8)
+
+[sub_resource type="BoxShape3D" id="shape_27"]
+size = Vector3(0.4, 3.2, 14.8)
+
+[sub_resource type="BoxMesh" id="mesh_28"]
+size = Vector3(9, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_28"]
+size = Vector3(9, 3.2, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_29"]
+size = Vector3(12.6, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_29"]
+size = Vector3(12.6, 3.2, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_30"]
+size = Vector3(0.4, 3.2, 9)
+
+[sub_resource type="BoxShape3D" id="shape_30"]
+size = Vector3(0.4, 3.2, 9)
+
+[sub_resource type="BoxMesh" id="mesh_31"]
+size = Vector3(0.4, 3.2, 9.6)
+
+[sub_resource type="BoxShape3D" id="shape_31"]
+size = Vector3(0.4, 3.2, 9.6)
+
+[sub_resource type="BoxMesh" id="mesh_32"]
+size = Vector3(24.4, 0.3, 32.4)
+
+[sub_resource type="BoxShape3D" id="shape_32"]
+size = Vector3(24.4, 0.3, 32.4)
+
+[sub_resource type="BoxMesh" id="mesh_33"]
+size = Vector3(2.55, 0.3, 3)
+
+[sub_resource type="BoxShape3D" id="shape_33"]
+size = Vector3(2.55, 0.3, 3)
+
+[sub_resource type="BoxMesh" id="mesh_34"]
+size = Vector3(3, 0.3, 2.55)
+
+[sub_resource type="BoxShape3D" id="shape_34"]
+size = Vector3(3, 0.3, 2.55)
+
+[sub_resource type="BoxMesh" id="mesh_35"]
+size = Vector3(0.3, 1, 32.4)
+
+[sub_resource type="BoxShape3D" id="shape_35"]
+size = Vector3(0.3, 1, 32.4)
+
+[sub_resource type="BoxMesh" id="mesh_36"]
+size = Vector3(24.4, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="shape_36"]
+size = Vector3(24.4, 1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_37"]
+size = Vector3(0.3, 1, 12.2)
+
+[sub_resource type="BoxShape3D" id="shape_37"]
+size = Vector3(0.3, 1, 12.2)
+
+[sub_resource type="BoxMesh" id="mesh_38"]
+size = Vector3(0.3, 1, 17.2)
+
+[sub_resource type="BoxShape3D" id="shape_38"]
+size = Vector3(0.3, 1, 17.2)
+
+[sub_resource type="BoxMesh" id="mesh_39"]
+size = Vector3(9.2, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="shape_39"]
+size = Vector3(9.2, 1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_40"]
+size = Vector3(12.2, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="shape_40"]
+size = Vector3(12.2, 1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_41"]
+size = Vector3(2, 1.2, 1.5)
+
+[sub_resource type="BoxShape3D" id="shape_41"]
+size = Vector3(2, 1.2, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_42"]
+size = Vector3(2, 1.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="shape_42"]
+size = Vector3(2, 1.1, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_43"]
+size = Vector3(0.5, 1.1, 3)
+
+[sub_resource type="BoxShape3D" id="shape_43"]
+size = Vector3(0.5, 1.1, 3)
+
+[sub_resource type="BoxMesh" id="mesh_44"]
+size = Vector3(3.8, 3, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_44"]
+size = Vector3(3.8, 3, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_45"]
+size = Vector3(10, 3, 0.4)
+
+[sub_resource type="BoxShape3D" id="shape_45"]
+size = Vector3(10, 3, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_46"]
+size = Vector3(0.4, 3, 10)
+
+[sub_resource type="BoxShape3D" id="shape_46"]
+size = Vector3(0.4, 3, 10)
+
+[sub_resource type="BoxMesh" id="mesh_47"]
+size = Vector3(0.4, 3, 3.8)
+
+[sub_resource type="BoxShape3D" id="shape_47"]
+size = Vector3(0.4, 3, 3.8)
+
+[sub_resource type="BoxMesh" id="mesh_48"]
+size = Vector3(10.4, 0.3, 10.4)
+
+[sub_resource type="BoxShape3D" id="shape_48"]
+size = Vector3(10.4, 0.3, 10.4)
+
+[sub_resource type="BoxMesh" id="mesh_49"]
+size = Vector3(3, 0.3, 4.1761)
+
+[sub_resource type="BoxShape3D" id="shape_49"]
+size = Vector3(3, 0.3, 4.1761)
+
+[sub_resource type="BoxMesh" id="mesh_50"]
+size = Vector3(2.5, 0.3, 11.5434)
+
+[sub_resource type="BoxShape3D" id="shape_50"]
+size = Vector3(2.5, 0.3, 11.5434)
+
+[node name="Arena" type="Node3D"]
+
+[node name="Navigation" type="NavigationRegion3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/Ground"]
+mesh = SubResource("mesh_0")
+surface_material_override/0 = ExtResource("m_ground")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/Ground"]
+shape = SubResource("shape_0")
+
+[node name="PerimeterN" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -60.5)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/PerimeterN"]
+mesh = SubResource("mesh_1")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/PerimeterN"]
+shape = SubResource("shape_1")
+
+[node name="PerimeterS" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 60.5)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/PerimeterS"]
+mesh = SubResource("mesh_1")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/PerimeterS"]
+shape = SubResource("shape_1")
+
+[node name="PerimeterW" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.5, 3, 0)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/PerimeterW"]
+mesh = SubResource("mesh_2")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/PerimeterW"]
+shape = SubResource("shape_2")
+
+[node name="PerimeterE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.5, 3, 0)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/PerimeterE"]
+mesh = SubResource("mesh_2")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/PerimeterE"]
+shape = SubResource("shape_2")
+
+[node name="SpawnWall0" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5, 2, 42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall0"]
+mesh = SubResource("mesh_3")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall0"]
+shape = SubResource("shape_3")
+
+[node name="SpawnWall0M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 2, -42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall0M"]
+mesh = SubResource("mesh_3")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall0M"]
+shape = SubResource("shape_3")
+
+[node name="SpawnWall1" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall1"]
+mesh = SubResource("mesh_4")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall1"]
+shape = SubResource("shape_4")
+
+[node name="SpawnWall1M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall1M"]
+mesh = SubResource("mesh_4")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall1M"]
+shape = SubResource("shape_4")
+
+[node name="SpawnWall2" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall2"]
+mesh = SubResource("mesh_4")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall2"]
+shape = SubResource("shape_4")
+
+[node name="SpawnWall2M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall2M"]
+mesh = SubResource("mesh_4")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall2M"]
+shape = SubResource("shape_4")
+
+[node name="SpawnWall3" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 2, 42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall3"]
+mesh = SubResource("mesh_3")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall3"]
+shape = SubResource("shape_3")
+
+[node name="SpawnWall3M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5, 2, -42)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnWall3M"]
+mesh = SubResource("mesh_3")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnWall3M"]
+shape = SubResource("shape_3")
+
+[node name="SpawnShieldC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldC"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldC"]
+shape = SubResource("shape_5")
+
+[node name="SpawnShieldCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldCM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldCM"]
+shape = SubResource("shape_5")
+
+[node name="SpawnShieldW" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.3, 47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldW"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldW"]
+shape = SubResource("shape_5")
+
+[node name="SpawnShieldWM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.3, -47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldWM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldWM"]
+shape = SubResource("shape_5")
+
+[node name="SpawnShieldE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.3, 47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldE"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldE"]
+shape = SubResource("shape_5")
+
+[node name="SpawnShieldEM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.3, -47)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnShieldEM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnShieldEM"]
+shape = SubResource("shape_5")
+
+[node name="SpawnCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.6, 51)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnCrateA"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnCrateA"]
+shape = SubResource("shape_6")
+
+[node name="SpawnCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.6, -51)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnCrateAM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnCrateAM"]
+shape = SubResource("shape_6")
+
+[node name="SpawnCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.75, 50)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnCrateB"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnCrateB"]
+shape = SubResource("shape_7")
+
+[node name="SpawnCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.75, -50)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SpawnCrateBM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SpawnCrateBM"]
+shape = SubResource("shape_7")
+
+[node name="Nest" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 36)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/Nest"]
+mesh = SubResource("mesh_8")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/Nest"]
+shape = SubResource("shape_8")
+
+[node name="NestM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -36)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestM"]
+mesh = SubResource("mesh_8")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestM"]
+shape = SubResource("shape_8")
+
+[node name="NestParapet" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 34.2)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestParapet"]
+mesh = SubResource("mesh_9")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestParapet"]
+shape = SubResource("shape_9")
+
+[node name="NestParapetM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -34.2)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestParapetM"]
+mesh = SubResource("mesh_9")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestParapetM"]
+shape = SubResource("shape_9")
+
+[node name="YardContainerA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.3, 22)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardContainerA"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardContainerA"]
+shape = SubResource("shape_10")
+
+[node name="YardContainerAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.3, -22)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardContainerAM"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardContainerAM"]
+shape = SubResource("shape_10")
+
+[node name="YardContainerB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.3, 26)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardContainerB"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardContainerB"]
+shape = SubResource("shape_5")
+
+[node name="YardContainerBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.3, -26)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardContainerBM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardContainerBM"]
+shape = SubResource("shape_5")
+
+[node name="YardCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.75, 30)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateA"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateA"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.75, -30)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateAM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateAM"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.6, 31)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateB"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateB"]
+shape = SubResource("shape_11")
+
+[node name="YardCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.6, -31)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateBM"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateBM"]
+shape = SubResource("shape_11")
+
+[node name="YardCrateC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.6, 14)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateC"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateC"]
+shape = SubResource("shape_12")
+
+[node name="YardCrateCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.6, -14)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateCM"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateCM"]
+shape = SubResource("shape_12")
+
+[node name="YardCrateD" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.75, 16)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateD"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateD"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateDM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.75, -16)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateDM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateDM"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateDTop" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.1, 16)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateDTop"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateDTop"]
+shape = SubResource("shape_11")
+
+[node name="YardCrateDTopM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.1, -16)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateDTopM"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateDTopM"]
+shape = SubResource("shape_11")
+
+[node name="YardBarrel" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.6, 28)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardBarrel"]
+mesh = SubResource("mesh_13")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardBarrel"]
+shape = SubResource("shape_13")
+
+[node name="YardBarrelM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.6, -28)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardBarrelM"]
+mesh = SubResource("mesh_13")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardBarrelM"]
+shape = SubResource("shape_13")
+
+[node name="YardCrateE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.8, 6)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateE"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateE"]
+shape = SubResource("shape_14")
+
+[node name="YardCrateEM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.8, -6)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateEM"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateEM"]
+shape = SubResource("shape_14")
+
+[node name="YardLowWallA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.55, 10)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardLowWallA"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardLowWallA"]
+shape = SubResource("shape_15")
+
+[node name="YardLowWallAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.55, -10)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardLowWallAM"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardLowWallAM"]
+shape = SubResource("shape_15")
+
+[node name="YardLowWallB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.55, 8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardLowWallB"]
+mesh = SubResource("mesh_16")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardLowWallB"]
+shape = SubResource("shape_16")
+
+[node name="YardLowWallBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.55, -8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardLowWallBM"]
+mesh = SubResource("mesh_16")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardLowWallBM"]
+shape = SubResource("shape_16")
+
+[node name="YardBlock" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.7, 18)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardBlock"]
+mesh = SubResource("mesh_17")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardBlock"]
+shape = SubResource("shape_17")
+
+[node name="YardBlockM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7, -18)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardBlockM"]
+mesh = SubResource("mesh_17")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardBlockM"]
+shape = SubResource("shape_17")
+
+[node name="YardCrateF" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0.75, 18)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateF"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateF"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateFM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 0.75, -18)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateFM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateFM"]
+shape = SubResource("shape_7")
+
+[node name="YardCrateG" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 0.6, 12.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateG"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateG"]
+shape = SubResource("shape_6")
+
+[node name="YardCrateGM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0.6, -12.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/YardCrateGM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/YardCrateGM"]
+shape = SubResource("shape_6")
+
+[node name="Truck" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.4, 1)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/Truck"]
+mesh = SubResource("mesh_18")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/Truck"]
+shape = SubResource("shape_18")
+
+[node name="TruckM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.4, -1)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/TruckM"]
+mesh = SubResource("mesh_18")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/TruckM"]
+shape = SubResource("shape_18")
+
+[node name="DividerWS" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.75, 24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerWS"]
+mesh = SubResource("mesh_19")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerWS"]
+shape = SubResource("shape_19")
+
+[node name="DividerWSM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.75, -24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerWSM"]
+mesh = SubResource("mesh_19")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerWSM"]
+shape = SubResource("shape_19")
+
+[node name="DividerES" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.75, 24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerES"]
+mesh = SubResource("mesh_19")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerES"]
+shape = SubResource("shape_19")
+
+[node name="DividerESM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.75, -24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerESM"]
+mesh = SubResource("mesh_19")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerESM"]
+shape = SubResource("shape_19")
+
+[node name="DividerWMid" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.75, 0)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerWMid"]
+mesh = SubResource("mesh_20")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerWMid"]
+shape = SubResource("shape_20")
+
+[node name="DividerWMidM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.75, 0)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/DividerWMidM"]
+mesh = SubResource("mesh_20")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/DividerWMidM"]
+shape = SubResource("shape_20")
+
+[node name="WhSouthA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6, 1.6, 16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSouthA"]
+mesh = SubResource("mesh_21")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSouthA"]
+shape = SubResource("shape_21")
+
+[node name="WhSouthAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6, 1.6, -16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSouthAM"]
+mesh = SubResource("mesh_21")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSouthAM"]
+shape = SubResource("shape_21")
+
+[node name="WhSouthB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4, 1.6, 16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSouthB"]
+mesh = SubResource("mesh_21")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSouthB"]
+shape = SubResource("shape_21")
+
+[node name="WhSouthBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4, 1.6, -16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSouthBM"]
+mesh = SubResource("mesh_21")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSouthBM"]
+shape = SubResource("shape_21")
+
+[node name="WhNorthA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 1.6, -16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhNorthA"]
+mesh = SubResource("mesh_22")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhNorthA"]
+shape = SubResource("shape_22")
+
+[node name="WhNorthAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1.6, 16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhNorthAM"]
+mesh = SubResource("mesh_22")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhNorthAM"]
+shape = SubResource("shape_22")
+
+[node name="WhNorthB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8, 1.6, -16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhNorthB"]
+mesh = SubResource("mesh_23")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhNorthB"]
+shape = SubResource("shape_23")
+
+[node name="WhNorthBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8, 1.6, 16)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhNorthBM"]
+mesh = SubResource("mesh_23")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhNorthBM"]
+shape = SubResource("shape_23")
+
+[node name="WhEastA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1.6, -12.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastA"]
+mesh = SubResource("mesh_24")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastA"]
+shape = SubResource("shape_24")
+
+[node name="WhEastAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.6, 12.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastAM"]
+mesh = SubResource("mesh_24")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastAM"]
+shape = SubResource("shape_24")
+
+[node name="WhEastB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1.6, -4.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastB"]
+mesh = SubResource("mesh_25")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastB"]
+shape = SubResource("shape_25")
+
+[node name="WhEastBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.6, 4.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastBM"]
+mesh = SubResource("mesh_25")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastBM"]
+shape = SubResource("shape_25")
+
+[node name="WhEastC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1.6, 4.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastC"]
+mesh = SubResource("mesh_25")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastC"]
+shape = SubResource("shape_25")
+
+[node name="WhEastCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.6, -4.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastCM"]
+mesh = SubResource("mesh_25")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastCM"]
+shape = SubResource("shape_25")
+
+[node name="WhEastD" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1.6, 12.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastD"]
+mesh = SubResource("mesh_24")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastD"]
+shape = SubResource("shape_24")
+
+[node name="WhEastDM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.6, -12.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhEastDM"]
+mesh = SubResource("mesh_24")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhEastDM"]
+shape = SubResource("shape_24")
+
+[node name="WhSill0" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0.5, -8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSill0"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSill0"]
+shape = SubResource("shape_26")
+
+[node name="WhSill0M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.5, 8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSill0M"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSill0M"]
+shape = SubResource("shape_26")
+
+[node name="WhLintel0" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2.7, -8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLintel0"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLintel0"]
+shape = SubResource("shape_26")
+
+[node name="WhLintel0M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 2.7, 8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLintel0M"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLintel0M"]
+shape = SubResource("shape_26")
+
+[node name="WhSill1" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0.5, 8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSill1"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSill1"]
+shape = SubResource("shape_26")
+
+[node name="WhSill1M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.5, -8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhSill1M"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhSill1M"]
+shape = SubResource("shape_26")
+
+[node name="WhLintel1" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2.7, 8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLintel1"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLintel1"]
+shape = SubResource("shape_26")
+
+[node name="WhLintel1M" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 2.7, -8)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLintel1M"]
+mesh = SubResource("mesh_26")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLintel1M"]
+shape = SubResource("shape_26")
+
+[node name="WhWestA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 1.6, -8.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhWestA"]
+mesh = SubResource("mesh_27")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhWestA"]
+shape = SubResource("shape_27")
+
+[node name="WhWestAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 1.6, 8.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhWestAM"]
+mesh = SubResource("mesh_27")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhWestAM"]
+shape = SubResource("shape_27")
+
+[node name="WhWestB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 1.6, 8.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhWestB"]
+mesh = SubResource("mesh_27")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhWestB"]
+shape = SubResource("shape_27")
+
+[node name="WhWestBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 1.6, -8.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhWestBM"]
+mesh = SubResource("mesh_27")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhWestBM"]
+shape = SubResource("shape_27")
+
+[node name="WhInnerA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.5, 1.6, 5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerA"]
+mesh = SubResource("mesh_28")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerA"]
+shape = SubResource("shape_28")
+
+[node name="WhInnerAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, 1.6, -5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerAM"]
+mesh = SubResource("mesh_28")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerAM"]
+shape = SubResource("shape_28")
+
+[node name="WhInnerB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3, 1.6, 5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerB"]
+mesh = SubResource("mesh_29")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerB"]
+shape = SubResource("shape_29")
+
+[node name="WhInnerBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3, 1.6, -5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerBM"]
+mesh = SubResource("mesh_29")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerBM"]
+shape = SubResource("shape_29")
+
+[node name="WhInnerC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1.6, -11.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerC"]
+mesh = SubResource("mesh_30")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerC"]
+shape = SubResource("shape_30")
+
+[node name="WhInnerCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.6, 11.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerCM"]
+mesh = SubResource("mesh_30")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerCM"]
+shape = SubResource("shape_30")
+
+[node name="WhInnerD" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1.6, 0.2)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerD"]
+mesh = SubResource("mesh_31")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerD"]
+shape = SubResource("shape_31")
+
+[node name="WhInnerDM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.6, -0.2)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhInnerDM"]
+mesh = SubResource("mesh_31")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhInnerDM"]
+shape = SubResource("shape_31")
+
+[node name="WhRoof" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3.35, 0)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoof"]
+mesh = SubResource("mesh_32")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoof"]
+shape = SubResource("shape_32")
+
+[node name="WhRoofM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.35, 0)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoofM"]
+mesh = SubResource("mesh_32")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoofM"]
+shape = SubResource("shape_32")
+
+[node name="WhLandingW" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.475, 3.35, -2.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLandingW"]
+mesh = SubResource("mesh_33")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLandingW"]
+shape = SubResource("shape_33")
+
+[node name="WhLandingWM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.475, 3.35, 2.5)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLandingWM"]
+mesh = SubResource("mesh_33")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLandingWM"]
+shape = SubResource("shape_33")
+
+[node name="WhLandingN" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5, 3.35, -17.475)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLandingN"]
+mesh = SubResource("mesh_34")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLandingN"]
+shape = SubResource("shape_34")
+
+[node name="WhLandingNM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 3.35, 17.475)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLandingNM"]
+mesh = SubResource("mesh_34")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLandingNM"]
+shape = SubResource("shape_34")
+
+[node name="WhParapetE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.95, 4, 0)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetE"]
+mesh = SubResource("mesh_35")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetE"]
+shape = SubResource("shape_35")
+
+[node name="WhParapetEM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.95, 4, 0)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetEM"]
+mesh = SubResource("mesh_35")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetEM"]
+shape = SubResource("shape_35")
+
+[node name="WhParapetS" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4, 16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetS"]
+mesh = SubResource("mesh_36")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetS"]
+shape = SubResource("shape_36")
+
+[node name="WhParapetSM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, -16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetSM"]
+mesh = SubResource("mesh_36")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetSM"]
+shape = SubResource("shape_36")
+
+[node name="WhParapetWA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.05, 4, -10.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetWA"]
+mesh = SubResource("mesh_37")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetWA"]
+shape = SubResource("shape_37")
+
+[node name="WhParapetWAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.05, 4, 10.1)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetWAM"]
+mesh = SubResource("mesh_37")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetWAM"]
+shape = SubResource("shape_37")
+
+[node name="WhParapetWB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.05, 4, 7.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetWB"]
+mesh = SubResource("mesh_38")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetWB"]
+shape = SubResource("shape_38")
+
+[node name="WhParapetWBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.05, 4, -7.6)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetWBM"]
+mesh = SubResource("mesh_38")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetWBM"]
+shape = SubResource("shape_38")
+
+[node name="WhParapetNA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6, 4, -16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetNA"]
+mesh = SubResource("mesh_39")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetNA"]
+shape = SubResource("shape_39")
+
+[node name="WhParapetNAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6, 4, 16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetNAM"]
+mesh = SubResource("mesh_39")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetNAM"]
+shape = SubResource("shape_39")
+
+[node name="WhParapetNB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9, 4, -16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetNB"]
+mesh = SubResource("mesh_40")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetNB"]
+shape = SubResource("shape_40")
+
+[node name="WhParapetNBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9, 4, 16.05)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhParapetNBM"]
+mesh = SubResource("mesh_40")
+surface_material_override/0 = ExtResource("m_plaster")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhParapetNBM"]
+shape = SubResource("shape_40")
+
+[node name="WhRoofUnitA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 4.1, -6)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoofUnitA"]
+mesh = SubResource("mesh_41")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoofUnitA"]
+shape = SubResource("shape_41")
+
+[node name="WhRoofUnitAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 4.1, 6)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoofUnitAM"]
+mesh = SubResource("mesh_41")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoofUnitAM"]
+shape = SubResource("shape_41")
+
+[node name="WhRoofUnitB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 4.1, 8)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoofUnitB"]
+mesh = SubResource("mesh_41")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoofUnitB"]
+shape = SubResource("shape_41")
+
+[node name="WhRoofUnitBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4.1, -8)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRoofUnitBM"]
+mesh = SubResource("mesh_41")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRoofUnitBM"]
+shape = SubResource("shape_41")
+
+[node name="WhCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0.6, 10)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateA"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateA"]
+shape = SubResource("shape_6")
+
+[node name="WhCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.6, -10)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateAM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateAM"]
+shape = SubResource("shape_6")
+
+[node name="WhCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0.75, -10)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateB"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateB"]
+shape = SubResource("shape_7")
+
+[node name="WhCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0.75, 10)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateBM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateBM"]
+shape = SubResource("shape_7")
+
+[node name="WhCrateC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.6, 10.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateC"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateC"]
+shape = SubResource("shape_11")
+
+[node name="WhCrateCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0.6, -10.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhCrateCM"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhCrateCM"]
+shape = SubResource("shape_11")
+
+[node name="WhLowWall" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0.55, -11)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLowWall"]
+mesh = SubResource("mesh_42")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLowWall"]
+shape = SubResource("shape_42")
+
+[node name="WhLowWallM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.55, 11)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhLowWallM"]
+mesh = SubResource("mesh_42")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhLowWallM"]
+shape = SubResource("shape_42")
+
+[node name="AlleyLowWall" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.55, 9)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/AlleyLowWall"]
+mesh = SubResource("mesh_43")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/AlleyLowWall"]
+shape = SubResource("shape_43")
+
+[node name="AlleyLowWallM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.55, -9)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/AlleyLowWallM"]
+mesh = SubResource("mesh_43")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/AlleyLowWallM"]
+shape = SubResource("shape_43")
+
+[node name="AlleyCrate" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0.75, -9)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/AlleyCrate"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/AlleyCrate"]
+shape = SubResource("shape_7")
+
+[node name="AlleyCrateM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.75, 9)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/AlleyCrateM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/AlleyCrateM"]
+shape = SubResource("shape_7")
+
+[node name="ShedNorthA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1, 1.5, 24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedNorthA"]
+mesh = SubResource("mesh_44")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedNorthA"]
+shape = SubResource("shape_44")
+
+[node name="ShedNorthAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.1, 1.5, -24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedNorthAM"]
+mesh = SubResource("mesh_44")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedNorthAM"]
+shape = SubResource("shape_44")
+
+[node name="ShedNorthB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.9, 1.5, 24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedNorthB"]
+mesh = SubResource("mesh_44")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedNorthB"]
+shape = SubResource("shape_44")
+
+[node name="ShedNorthBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9, 1.5, -24)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedNorthBM"]
+mesh = SubResource("mesh_44")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedNorthBM"]
+shape = SubResource("shape_44")
+
+[node name="ShedSouth" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 1.5, 34)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedSouth"]
+mesh = SubResource("mesh_45")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedSouth"]
+shape = SubResource("shape_45")
+
+[node name="ShedSouthM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.5, -34)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedSouthM"]
+mesh = SubResource("mesh_45")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedSouthM"]
+shape = SubResource("shape_45")
+
+[node name="ShedWest" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 1.5, 29)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedWest"]
+mesh = SubResource("mesh_46")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedWest"]
+shape = SubResource("shape_46")
+
+[node name="ShedWestM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1.5, -29)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedWestM"]
+mesh = SubResource("mesh_46")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedWestM"]
+shape = SubResource("shape_46")
+
+[node name="ShedEastA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 1.5, 25.9)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedEastA"]
+mesh = SubResource("mesh_47")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedEastA"]
+shape = SubResource("shape_47")
+
+[node name="ShedEastAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1.5, -25.9)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedEastAM"]
+mesh = SubResource("mesh_47")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedEastAM"]
+shape = SubResource("shape_47")
+
+[node name="ShedEastB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 1.5, 32.1)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedEastB"]
+mesh = SubResource("mesh_47")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedEastB"]
+shape = SubResource("shape_47")
+
+[node name="ShedEastBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1.5, -32.1)
+metadata/surface = "brick"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedEastBM"]
+mesh = SubResource("mesh_47")
+surface_material_override/0 = ExtResource("m_brick")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedEastBM"]
+shape = SubResource("shape_47")
+
+[node name="ShedRoof" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 3.15, 29)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedRoof"]
+mesh = SubResource("mesh_48")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedRoof"]
+shape = SubResource("shape_48")
+
+[node name="ShedRoofM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 3.15, -29)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedRoofM"]
+mesh = SubResource("mesh_48")
+surface_material_override/0 = ExtResource("m_roof")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedRoofM"]
+shape = SubResource("shape_48")
+
+[node name="ShedCrate" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5, 0.6, 31.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedCrate"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedCrate"]
+shape = SubResource("shape_6")
+
+[node name="ShedCrateM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5, 0.6, -31.5)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/ShedCrateM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/ShedCrateM"]
+shape = SubResource("shape_6")
+
+[node name="SwContainerA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 1.3, 24)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwContainerA"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwContainerA"]
+shape = SubResource("shape_10")
+
+[node name="SwContainerAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1.3, -24)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwContainerAM"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwContainerAM"]
+shape = SubResource("shape_10")
+
+[node name="SwContainerB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.3, 31)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwContainerB"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwContainerB"]
+shape = SubResource("shape_5")
+
+[node name="SwContainerBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.3, -31)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwContainerBM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_green")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwContainerBM"]
+shape = SubResource("shape_5")
+
+[node name="SwCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.75, 22)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateA"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateA"]
+shape = SubResource("shape_7")
+
+[node name="SwCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.75, -22)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateAM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateAM"]
+shape = SubResource("shape_7")
+
+[node name="SwCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0.6, 37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateB"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateB"]
+shape = SubResource("shape_12")
+
+[node name="SwCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.6, -37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateBM"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateBM"]
+shape = SubResource("shape_12")
+
+[node name="SwCrateC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.6, 20)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateC"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateC"]
+shape = SubResource("shape_6")
+
+[node name="SwCrateCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0.6, -20)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateCM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateCM"]
+shape = SubResource("shape_6")
+
+[node name="SwCrateD" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0.8, 37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateD"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateD"]
+shape = SubResource("shape_14")
+
+[node name="SwCrateDM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0.8, -37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateDM"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateDM"]
+shape = SubResource("shape_14")
+
+[node name="SwCrateE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0.6, 20)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateE"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateE"]
+shape = SubResource("shape_11")
+
+[node name="SwCrateEM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0.6, -20)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwCrateEM"]
+mesh = SubResource("mesh_11")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwCrateEM"]
+shape = SubResource("shape_11")
+
+[node name="SwLowWall" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0.55, 19)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwLowWall"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwLowWall"]
+shape = SubResource("shape_15")
+
+[node name="SwLowWallM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.55, -19)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/SwLowWallM"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/SwLowWallM"]
+shape = SubResource("shape_15")
+
+[node name="NwContainerA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 1.3, -26)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwContainerA"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwContainerA"]
+shape = SubResource("shape_5")
+
+[node name="NwContainerAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1.3, 26)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwContainerAM"]
+mesh = SubResource("mesh_5")
+surface_material_override/0 = ExtResource("m_metal_red")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwContainerAM"]
+shape = SubResource("shape_5")
+
+[node name="NwContainerB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 1.3, -31)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwContainerB"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwContainerB"]
+shape = SubResource("shape_10")
+
+[node name="NwContainerBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1.3, 31)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwContainerBM"]
+mesh = SubResource("mesh_10")
+surface_material_override/0 = ExtResource("m_metal_blue")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwContainerBM"]
+shape = SubResource("shape_10")
+
+[node name="NwCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0.75, -37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateA"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateA"]
+shape = SubResource("shape_7")
+
+[node name="NwCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0.75, 37)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateAM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateAM"]
+shape = SubResource("shape_7")
+
+[node name="NwCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.8, -31)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateB"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateB"]
+shape = SubResource("shape_14")
+
+[node name="NwCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0.8, 31)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateBM"]
+mesh = SubResource("mesh_14")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateBM"]
+shape = SubResource("shape_14")
+
+[node name="NwCrateC" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0.6, -24)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateC"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateC"]
+shape = SubResource("shape_6")
+
+[node name="NwCrateCM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0.6, 24)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateCM"]
+mesh = SubResource("mesh_6")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateCM"]
+shape = SubResource("shape_6")
+
+[node name="NwCrateD" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.6, -23)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateD"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateD"]
+shape = SubResource("shape_12")
+
+[node name="NwCrateDM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.6, 23)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwCrateDM"]
+mesh = SubResource("mesh_12")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwCrateDM"]
+shape = SubResource("shape_12")
+
+[node name="NwLowWallA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0.55, -38)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwLowWallA"]
+mesh = SubResource("mesh_16")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwLowWallA"]
+shape = SubResource("shape_16")
+
+[node name="NwLowWallAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0.55, 38)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwLowWallAM"]
+mesh = SubResource("mesh_16")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwLowWallAM"]
+shape = SubResource("shape_16")
+
+[node name="NwLowWallB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0.55, -36)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwLowWallB"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwLowWallB"]
+shape = SubResource("shape_15")
+
+[node name="NwLowWallBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.55, 36)
+metadata/surface = "concrete"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NwLowWallBM"]
+mesh = SubResource("mesh_15")
+surface_material_override/0 = ExtResource("m_concrete")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NwLowWallBM"]
+shape = SubResource("shape_15")
+
+[node name="FarCrateA" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0.75, 6)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/FarCrateA"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/FarCrateA"]
+shape = SubResource("shape_7")
+
+[node name="FarCrateAM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 0.75, -6)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/FarCrateAM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/FarCrateAM"]
+shape = SubResource("shape_7")
+
+[node name="FarCrateB" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0.75, -8)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/FarCrateB"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/FarCrateB"]
+shape = SubResource("shape_7")
+
+[node name="FarCrateBM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 0.75, 8)
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/FarCrateBM"]
+mesh = SubResource("mesh_7")
+surface_material_override/0 = ExtResource("m_wood")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/FarCrateBM"]
+shape = SubResource("shape_7")
+
+[node name="NestRampW" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, -0.2873, -0.9578, 0, 0.9578, -0.2873, 1, 0, 0, -5.9569, 0.4563, 36)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestRampW"]
+mesh = SubResource("mesh_49")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestRampW"]
+shape = SubResource("shape_49")
+
+[node name="NestRampWM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, 0.2873, 0.9578, 0, 0.9578, -0.2873, -1, 0, 0, 5.9569, 0.4563, -36)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestRampWM"]
+mesh = SubResource("mesh_49")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestRampWM"]
+shape = SubResource("shape_49")
+
+[node name="NestRampE" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, 0.2873, 0.9578, 0, 0.9578, -0.2873, -1, 0, 0, 5.9569, 0.4563, 36)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestRampE"]
+mesh = SubResource("mesh_49")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestRampE"]
+shape = SubResource("shape_49")
+
+[node name="NestRampEM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, -0.2873, -0.9578, 0, 0.9578, -0.2873, 1, 0, 0, -5.9569, 0.4563, -36)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/NestRampEM"]
+mesh = SubResource("mesh_49")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/NestRampEM"]
+shape = SubResource("shape_49")
+
+[node name="WhRampW" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(-1, 0, 0, 0, 0.9529, -0.3032, 0, -0.3032, -0.9529, -53.5, 1.6071, -9.4545)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRampW"]
+mesh = SubResource("mesh_50")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRampW"]
+shape = SubResource("shape_50")
+
+[node name="WhRampWM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 0.9529, -0.3032, 0, 0.3032, 0.9529, 53.5, 1.6071, 9.4545)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRampWM"]
+mesh = SubResource("mesh_50")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRampWM"]
+shape = SubResource("shape_50")
+
+[node name="WhRampN" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, 0.3032, 0.9529, 0, 0.9529, -0.3032, -1, 0, 0, -34.5455, 1.6071, -17.5)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRampN"]
+mesh = SubResource("mesh_50")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRampN"]
+shape = SubResource("shape_50")
+
+[node name="WhRampNM" type="StaticBody3D" parent="Navigation"]
+transform = Transform3D(0, -0.3032, -0.9529, 0, 0.9529, -0.3032, 1, 0, 0, 34.5455, 1.6071, 17.5)
+metadata/surface = "metal"
+
+[node name="Mesh" type="MeshInstance3D" parent="Navigation/WhRampNM"]
+mesh = SubResource("mesh_50")
+surface_material_override/0 = ExtResource("m_ramp")
+
+[node name="Shape" type="CollisionShape3D" parent="Navigation/WhRampNM"]
+shape = SubResource("shape_50")
+
+[node name="Markers" type="Node3D" parent="."]
+metadata/cover_points = PackedVector3Array(-3.9, 0, 47, 3.9, 0, 47, 0, 0, 44.9, 0, 0, 49.1, -3.9, 0, -47, 3.9, 0, -47, 0, 0, -49.1, 0, 0, -44.9, -23.9, 0, 47, -16.1, 0, 47, -20, 0, 44.9, -20, 0, 49.1, 16.1, 0, -47, 23.9, 0, -47, 20, 0, -49.1, 20, 0, -44.9, 16.1, 0, 47, 23.9, 0, 47, 20, 0, 44.9, 20, 0, 49.1, -23.9, 0, -47, -16.1, 0, -47, -20, 0, -49.1, -20, 0, -44.9, -11.65, 0, 51, -8.35, 0, 51, -10, 0, 49.35, -10, 0, 52.65, 8.35, 0, -51, 11.65, 0, -51, 10, 0, -52.65, 10, 0, -49.35, 8.35, 0, 50, 11.65, 0, 50, 10, 0, 48.35, 10, 0, 51.65, -11.65, 0, -50, -8.35, 0, -50, -10, 0, -51.65, -10, 0, -48.35, -11.1, 0, 22, -6.9, 0, 22, -9, 0, 18.1, -9, 0, 25.9, 6.9, 0, -22, 11.1, 0, -22, 9, 0, -25.9, 9, 0, -18.1, 6.1, 0, 26, 13.9, 0, 26, 10, 0, 23.9, 10, 0, 28.1, -13.9, 0, -26, -6.1, 0, -26, -10, 0, -28.1, -10, 0, -23.9, -7.65, 0, 30, -4.35, 0, 30, -6, 0, 28.35, -6, 0, 31.65, 4.35, 0, -30, 7.65, 0, -30, 6, 0, -31.65, 6, 0, -28.35, 4.5, 0, 31, 7.5, 0, 31, 6, 0, 29.5, 6, 0, 32.5, -7.5, 0, -31, -4.5, 0, -31, -6, 0, -32.5, -6, 0, -29.5, -14.9, 0, 14, -11.1, 0, 14, -13, 0, 12.1, -13, 0, 15.9, 11.1, 0, -14, 14.9, 0, -14, 13, 0, -15.9, 13, 0, -12.1, 11.35, 0, 16, 14.65, 0, 16, 13, 0, 14.35, 13, 0, 17.65, -14.65, 0, -16, -11.35, 0, -16, -13, 0, -17.65, -13, 0, -14.35, -16.4, 0, 28, -13.6, 0, 28, -15, 0, 26.6, -15, 0, 29.4, 13.6, 0, -28, 16.4, 0, -28, 15, 0, -29.4, 15, 0, -26.6, 13.3, 0, 6, 16.7, 0, 6, 15, 0, 4.3, 15, 0, 7.7, -16.7, 0, -6, -13.3, 0, -6, -15, 0, -7.7, -15, 0, -4.3, -9.9, 0, 10, -4.1, 0, 10, -7, 0, 8.85, -7, 0, 11.15, 4.1, 0, -10, 9.9, 0, -10, 7, 0, -11.15, 7, 0, -8.85, 5.85, 0, 8, 8.15, 0, 8, 7, 0, 5.1, 7, 0, 10.9, -8.15, 0, -8, -5.85, 0, -8, -7, 0, -10.9, -7, 0, -5.1, 3.1, 0, 18, 6.9, 0, 18, 5, 0, 16.6, 5, 0, 19.4, -6.9, 0, -18, -3.1, 0, -18, -5, 0, -19.4, -5, 0, -16.6, -6.25, 0, 18, -2.95, 0, 18, -4.6, 0, 16.35, -4.6, 0, 19.65, 2.95, 0, -18, 6.25, 0, -18, 4.6, 0, -19.65, 4.6, 0, -16.35, 2.95, 0, 12.5, 6.25, 0, 12.5, 4.6, 0, 10.85, 4.6, 0, 14.15, -6.25, 0, -12.5, -2.95, 0, -12.5, -4.6, 0, -14.15, -4.6, 0, -10.85, 4.8, 0, 1, 9.2, 0, 1, 7, 0, -3.4, 7, 0, 5.4, -9.2, 0, -1, -4.8, 0, -1, -7, 0, -5.4, -7, 0, 3.4, -35.65, 0, 10, -32.35, 0, 10, -34, 0, 8.35, -34, 0, 11.65, 32.35, 0, -10, 35.65, 0, -10, 34, 0, -11.65, 34, 0, -8.35, -47.65, 0, -10, -44.35, 0, -10, -46, 0, -11.65, -46, 0, -8.35, 44.35, 0, 10, 47.65, 0, 10, 46, 0, 8.35, 46, 0, 11.65, -46.5, 0, 10.5, -43.5, 0, 10.5, -45, 0, 9, -45, 0, 12, 43.5, 0, -10.5, 46.5, 0, -10.5, 45, 0, -12, 45, 0, -9, -34.9, 0, -11, -31.1, 0, -11, -33, 0, -12.15, -33, 0, -9.85, 31.1, 0, 11, 34.9, 0, 11, 33, 0, 9.85, 33, 0, 12.15, -25.15, 0, 9, -22.85, 0, 9, -24, 0, 6.6, -24, 0, 11.4, 22.85, 0, -9, 25.15, 0, -9, 24, 0, -11.4, 24, 0, -6.6, -23.65, 0, -9, -20.35, 0, -9, -22, 0, -10.65, -22, 0, -7.35, 20.35, 0, 9, 23.65, 0, 9, 22, 0, 7.35, 22, 0, 10.65, -55.15, 0, 31.5, -51.85, 0, 31.5, -53.5, 0, 29.85, -53.5, 0, 33.15, 51.85, 0, -31.5, 55.15, 0, -31.5, 53.5, 0, -33.15, 53.5, 0, -29.85, -38.1, 0, 24, -33.9, 0, 24, -36, 0, 20.1, -36, 0, 27.9, 33.9, 0, -24, 38.1, 0, -24, 36, 0, -27.9, 36, 0, -20.1, -36.9, 0, 31, -29.1, 0, 31, -33, 0, 28.9, -33, 0, 33.1, 29.1, 0, -31, 36.9, 0, -31, 33, 0, -33.1, 33, 0, -28.9, -25.65, 0, 22, -22.35, 0, 22, -24, 0, 20.35, -24, 0, 23.65, 22.35, 0, -22, 25.65, 0, -22, 24, 0, -23.65, 24, 0, -20.35, -28.9, 0, 37, -25.1, 0, 37, -27, 0, 35.1, -27, 0, 38.9, 25.1, 0, -37, 28.9, 0, -37, 27, 0, -38.9, 27, 0, -35.1, -43.65, 0, 20, -40.35, 0, 20, -42, 0, 18.35, -42, 0, 21.65, 40.35, 0, -20, 43.65, 0, -20, 42, 0, -21.65, 42, 0, -18.35, -42.7, 0, 37, -39.3, 0, 37, -41, 0, 35.3, -41, 0, 38.7, 39.3, 0, -37, 42.7, 0, -37, 41, 0, -38.7, 41, 0, -35.3, -57.5, 0, 20, -54.5, 0, 20, -56, 0, 18.5, -56, 0, 21.5, 54.5, 0, -20, 57.5, 0, -20, 56, 0, -21.5, 56, 0, -18.5, -32.9, 0, 19, -27.1, 0, 19, -30, 0, 17.85, -30, 0, 20.15, 27.1, 0, -19, 32.9, 0, -19, 30, 0, -20.15, 30, 0, -17.85, -37.9, 0, -26, -30.1, 0, -26, -34, 0, -28.1, -34, 0, -23.9, 30.1, 0, 26, 37.9, 0, 26, 34, 0, 23.9, 34, 0, 28.1, -48.1, 0, -31, -43.9, 0, -31, -46, 0, -34.9, -46, 0, -27.1, 43.9, 0, 31, 48.1, 0, 31, 46, 0, 27.1, 46, 0, 34.9, -41.65, 0, -37, -38.35, 0, -37, -40, 0, -38.65, -40, 0, -35.35, 38.35, 0, 37, 41.65, 0, 37, 40, 0, 35.35, 40, 0, 38.65, -27.7, 0, -31, -24.3, 0, -31, -26, 0, -32.7, -26, 0, -29.3, 24.3, 0, 31, 27.7, 0, 31, 26, 0, 29.3, 26, 0, 32.7, -56.65, 0, -24, -53.35, 0, -24, -55, 0, -25.65, -55, 0, -22.35, 53.35, 0, 24, 56.65, 0, 24, 55, 0, 22.35, 55, 0, 25.65, -25.9, 0, -23, -22.1, 0, -23, -24, 0, -24.9, -24, 0, -21.1, 22.1, 0, 23, 25.9, 0, 23, 24, 0, 21.1, 24, 0, 24.9, -53.15, 0, -38, -50.85, 0, -38, -52, 0, -40.9, -52, 0, -35.1, 50.85, 0, 38, 53.15, 0, 38, 52, 0, 35.1, 52, 0, 40.9, -35.9, 0, -36, -30.1, 0, -36, -33, 0, -37.15, -33, 0, -34.85, 30.1, 0, 36, 35.9, 0, 36, 33, 0, 34.85, 33, 0, 37.15, -55.35, 0, 6, -57, 0, 4.35, -57, 0, 7.65, 55.35, 0, -6, 57, 0, -7.65, 57, 0, -4.35, -56.35, 0, -8, 56.35, 0, 8)
+metadata/hotspots = PackedVector3Array(-12, 0, 6, 12, 0, -6, 9, 0, 20, -9, 0, -20, 0, 0, 21, 0, 0, -21, -24, 0, 0, 24, 0, 0, -34, 0, -3, 34, 0, 3, -40, 0, 10, 40, 0, -10, -41, 0, 28, 41, 0, -28, -36, 3.5, 4, 36, 3.5, -4, -56, 0, 12, 56, 0, -12, -22.5, 0, -29, 22.5, 0, 29)
+
+[node name="Spawn0_0" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.05, 55)
+
+[node name="Spawn0_1" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.05, 55)
+
+[node name="Spawn0_2" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.05, 55)
+
+[node name="Spawn0_3" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.05, 55)
+
+[node name="Spawn0_4" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.05, 55)
+
+[node name="Spawn0_5" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.05, 55)
+
+[node name="Spawn0_6" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.05, 55)
+
+[node name="Spawn0_7" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0.05, 55)
+
+[node name="Spawn0_8" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0.05, 50)
+
+[node name="Spawn0_9" type="Marker3D" parent="Markers" groups=["spawn_team_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.05, 50)
+
+[node name="Sniper0_0" type="Marker3D" parent="Markers" groups=["sniper_spot_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 36.3)
+
+[node name="Sniper0_1" type="Marker3D" parent="Markers" groups=["sniper_spot_0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3, 3.5, 11)
+
+[node name="Spawn1_0" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 21, 0.05, -55)
+
+[node name="Spawn1_1" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 15, 0.05, -55)
+
+[node name="Spawn1_2" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 9, 0.05, -55)
+
+[node name="Spawn1_3" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3, 0.05, -55)
+
+[node name="Spawn1_4" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -3, 0.05, -55)
+
+[node name="Spawn1_5" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -9, 0.05, -55)
+
+[node name="Spawn1_6" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -15, 0.05, -55)
+
+[node name="Spawn1_7" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -21, 0.05, -55)
+
+[node name="Spawn1_8" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 50, 0.05, -50)
+
+[node name="Spawn1_9" type="Marker3D" parent="Markers" groups=["spawn_team_1"]]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -50, 0.05, -50)
+
+[node name="Sniper1_0" type="Marker3D" parent="Markers" groups=["sniper_spot_1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -36.3)
+
+[node name="Sniper1_1" type="Marker3D" parent="Markers" groups=["sniper_spot_1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3, 3.5, -11)

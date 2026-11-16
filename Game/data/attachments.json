@@ -1,0 +1,27 @@
+[
+ {"id":"scope_reddot","name":"Red Dot","slot":"scope","categories":["ar","smg","shotgun","pistol"],
+  "desc":"Faster, cleaner aim","mods":{"ads_spread_mult":0.85,"ads_time_mult":0.9}},
+ {"id":"scope_2x","name":"2x Scope","slot":"scope","categories":["ar","smg","shotgun"],
+  "desc":"2x zoom","mods":{"ads_fov":38,"ads_time_mult":1.05}},
+ {"id":"scope_4x","name":"4x Scope","slot":"scope","categories":["ar","sniper"],
+  "desc":"4x zoom","mods":{"ads_fov":22,"ads_time_mult":1.15}},
+ {"id":"scope_8x","name":"8x Scope","slot":"scope","categories":["sniper"],
+  "desc":"8x zoom, slower to aim","mods":{"ads_fov":11,"ads_time_mult":1.3}},
+
+ {"id":"grip_vertical","name":"Vertical Grip","slot":"grip","categories":["ar","smg"],
+  "desc":"-20% vertical recoil","mods":{"recoil_v_mult":0.8}},
+ {"id":"grip_angled","name":"Angled Grip","slot":"grip","categories":["ar","smg"],
+  "desc":"-25% horizontal recoil, faster aim","mods":{"recoil_h_mult":0.75,"ads_time_mult":0.9}},
+
+ {"id":"muzzle_compensator","name":"Compensator","slot":"muzzle","categories":["ar","smg","sniper","pistol"],
+  "desc":"-15% recoil","mods":{"recoil_v_mult":0.85,"recoil_h_mult":0.85}},
+ {"id":"muzzle_suppressor","name":"Suppressor","slot":"muzzle","categories":["ar","smg","sniper","pistol"],
+  "desc":"Quiet shots, no flash, bots hear you less","mods":{"suppressed":true}},
+ {"id":"muzzle_choke","name":"Choke","slot":"muzzle","categories":["shotgun"],
+  "desc":"-25% pellet spread","mods":{"spread_mult":0.75}},
+
+ {"id":"mag_extended","name":"Extended Mag","slot":"magazine","categories":["ar","smg","sniper","shotgun","pistol"],
+  "desc":"+35% magazine size","mods":{"mag_mult":1.35}},
+ {"id":"mag_quickdraw","name":"Quickdraw Mag","slot":"magazine","categories":["ar","smg","sniper","shotgun","pistol"],
+  "desc":"-25% reload time","mods":{"reload_mult":0.75}}
+]

@@ -1,0 +1,63 @@
+# Graphics: presets, optimisation, free assets
+
+## What the look is made of
+Mobile renderer (Vulkan). One shadowed sun, fixed ambient light, procedural
+sky, depth fog for dusty air, bloom, filmic tonemap, colour grading, dust
+motes or rain. Materials are procedural (noise + a brick shader), so the
+repo has no texture files yet.
+
+Not available on this class of PC: volumetric fog, SSAO, real-time global
+illumination (they need the Forward+ renderer and a dedicated GPU).
+
+## Quality presets (Settings > Quality preset)
+| Setting | Low | Medium | High |
+|---|---|---|---|
+| 3D render scale | 60% | 80% | 100% |
+| Anti-aliasing | off | FXAA | FXAA + MSAA 2x |
+| Sun shadows | off | 2048, 60 m | 4096, 90 m, 2 splits |
+| Bloom | off | on | on |
+| Fog | on | on | on |
+| Particle amount | 40% | 70% | 100% |
+| Bullet holes kept | 16 | 32 | 64 |
+| Shell casings / dust | off | on | on |
+
+The values live in `QUALITY` in `Game/scripts/core/game.gd`.
+
+## Getting to 60 FPS on the laptop - in this order
+1. Turn on "Show FPS" and play one match on Medium.
+2. Below 60: switch to Low. Render scale and shadows are the two big costs.
+3. Still below 60: Project > Project Settings > Rendering > Renderer >
+   Rendering Method = `gl_compatibility`, restart. (You lose bullet-hole
+   decals; everything else works.)
+4. Still below 60: lower "scale" for Low in `game.gd` to 0.5 and cap Max FPS at 30.
+5. Close the browser and Visual Studio while playing: memory was ~90% full.
+
+Already done in code: pooled effects (nothing is created during a fight),
+bots think ~6 times a second, bullets are plain data (no node per bullet),
+no physics bodies for casings, weather only around the player.
+
+Later, when real art goes in: merge static meshes per building, bake
+lightmaps (LightmapGI) and turn the sun shadow off for static objects,
+add occluders to the warehouses, keep textures at 1K.
+
+## Free assets and how to import them (art pass, when you want it)
+| Source | Use for | Format to download |
+|---|---|---|
+| Poly Haven (polyhaven.com) | Brick, concrete, metal textures; sky HDRIs; some props | Textures: 1K PNG. Models: glTF |
+| Fab / Quixel Megascans | Industrial props and surfaces (check each licence) | glTF or FBX, 1K-2K |
+| Kenney (kenney.nl) | Low-poly props, crates, barrels (CC0) | glTF |
+| Mixamo (mixamo.com) | Soldier character + run/idle/aim animations | FBX "With Skin" |
+
+Import:
+1. Copy files into `Game/third_party/<pack_name>/`. Godot imports them automatically.
+2. Textures: make a StandardMaterial3D, set Albedo / Normal / Roughness
+   maps, enable Triplanar (UV1) for walls and floors, save as `.tres` in
+   `Game/assets/materials/`. To re-skin the whole map, overwrite
+   `ground.tres`, `concrete.tres`, `plaster.tres` etc. with the same file names.
+3. Models: double-click the .glb/.fbx > Import settings > enable
+   "Generate LODs"; for scenery also "Light Baking: Static Lightmaps".
+4. Character: replace the box soldier in `scripts/combat/character_visual.gd`
+   with the Mixamo scene and drive an AnimationTree from the same
+   `animate()` inputs (speed, height, pitch).
+5. Real sounds: put .wav/.ogg files in `Game/assets/audio/` and assign
+   them in `scripts/core/sfx.gd` (`streams["shot_rifle"] = load(...)`).

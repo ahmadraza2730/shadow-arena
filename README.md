@@ -22,13 +22,21 @@ ShadowArena/
     data/        weapon/attachment resources (.tres)
     assets/      our models, textures, audio, vfx, materials
     third_party/ imported free asset packs
-  Docs/        Design notes, roadmap, per-step guides
+  MapSource/   Python generator for the map
+  Docs/        Design notes, roadmap, guides
   Builds/      Exported builds (ignored by Git)
 ```
 
 ## Run it
 Open Godot 4.7, click Import, pick `Game/project.godot`, press F5.
 
-## Roadmap
+## Docs
+- [Game guide](Docs/GAME_GUIDE.md): controls, rules, weapons, code map, what was tested
+- [Map](Docs/MAP.md): top-down diagram and dimensions
+- [Graphics](Docs/GRAPHICS.md): quality presets, 60 FPS plan, free assets
+- [Packaging](Docs/PACKAGING.md): making the Windows build
+- [Roadmap](Docs/ROADMAP.md): status of every step
 
-See [Docs/ROADMAP.md](Docs/ROADMAP.md).
+## Status
+Offline 4v4 vs bots is playable start to finish. Art, animation and sound
+are procedural placeholders. Online multiplayer is not started.

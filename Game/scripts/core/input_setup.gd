@@ -17,6 +17,11 @@ const KEY_ACTIONS: Dictionary = {
 	"crouch": [KEY_CTRL, KEY_C],
 	"toggle_view": [KEY_V],
 	"reload": [KEY_R],
+	"fire_mode": [KEY_B],
+	"weapon_primary": [KEY_1],
+	"weapon_secondary": [KEY_2],
+	"weapon_swap": [KEY_Q],
+	"scoreboard": [KEY_TAB],
 	"pause": [KEY_ESCAPE],
 }
 
