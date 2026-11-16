@@ -36,7 +36,9 @@ Open Godot 4.7, click Import, pick `Game/project.godot`, press F5.
 - [Graphics](Docs/GRAPHICS.md): quality presets, 60 FPS plan, free assets
 - [Packaging](Docs/PACKAGING.md): making the Windows build
 - [Roadmap](Docs/ROADMAP.md): status of every step
+- [Credits](Docs/CREDITS.md): third-party assets and licences
 
 ## Status
-Offline 4v4 vs bots is playable start to finish. Art, animation and sound
-are procedural placeholders. Online multiplayer is not started.
+Offline 4v4 vs bots is playable start to finish, with CC0 gun models, an
+animated soldier rig, recorded gunshots and scanned textures. Online
+multiplayer is not started.

@@ -340,8 +340,10 @@ def make_truck_art():
 
 
 if __name__ == "__main__":
-    make_brick(); make_concrete(); make_plaster(); make_ground(); make_container()
-    make_painted_metal(); make_wood(); make_roof(); make_tread_plate(); make_camo()
+    # Brick, concrete, plaster, ground and roof now use photo-scanned CC0
+    # textures from ambientCG (see Docs/CREDITS.md), so they are not
+    # generated any more. Call make_brick() etc. to get the generated ones back.
+    make_container(); make_painted_metal(); make_wood(); make_tread_plate(); make_camo()
     make_clouds()
     make_sign("sign_godown", "GODOWN 4", "TEXTILE MILLS (PVT) LTD", (26, 70, 120), (235, 230, 215))
     make_sign("sign_danger", "DANGER", "NO ENTRY  -  KEEP OUT", (200, 170, 20), (20, 20, 20))

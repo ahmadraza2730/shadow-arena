@@ -1,10 +1,12 @@
 extends Node
 ## Sfx (autoload)
 ##
-## Every sound in the game is synthesised here at start-up from noise and
-## sine waves, so the project needs no audio files at all (zero budget,
-## tiny repo). Replace a sound later by assigning a real AudioStream to
-## `streams["name"]`.
+## Gunshots and footsteps are real recordings (CC0: Free Firearm Sound
+## Library and Fantozzi footsteps) stored in assets/audio/. Every other
+## sound (reload, hit marker, UI...) is synthesised here at start-up from
+## noise and sine waves. Any sound without a file falls back to the
+## synthesised version, and dropping "<name>.ogg" into assets/audio/
+## replaces it.
 ##
 ## Use:  Sfx.play("shot_rifle", world_position)   # 3D, positional
 ##       Sfx.play("ui_click")                     # 2D, no position
@@ -12,8 +14,11 @@ extends Node
 const MIX_RATE := 22050
 const POOL_3D := 20
 const POOL_2D := 8
+const AUDIO_DIR := "res://assets/audio/"
+const STEP_VARIANTS := 6
 
 var streams: Dictionary = {}
+var _steps: Array[AudioStream] = []
 var _players_3d: Array[AudioStreamPlayer3D] = []
 var _players_2d: Array[AudioStreamPlayer] = []
 var _next_3d := 0
@@ -25,6 +30,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_rng.seed = 1234
 	_build_streams()
+	_load_recordings()
 	for i in POOL_3D:
 		var p := AudioStreamPlayer3D.new()
 		p.unit_size = 14.0
@@ -42,6 +48,8 @@ func _ready() -> void:
 func play(sound: String, position: Variant = null, volume_db: float = 0.0,
 		pitch: float = 1.0) -> void:
 	var stream: AudioStream = streams.get(sound)
+	if sound == "step" and not _steps.is_empty():
+		stream = _steps.pick_random()
 	if stream == null:
 		return
 	if position is Vector3:
@@ -61,6 +69,18 @@ func play(sound: String, position: Variant = null, volume_db: float = 0.0,
 		p2.play()
 
 
+## Replaces synthesised sounds with recorded ones where a file exists.
+func _load_recordings() -> void:
+	for sound: String in streams.keys():
+		var path := AUDIO_DIR + sound + ".ogg"
+		if ResourceLoader.exists(path):
+			streams[sound] = load(path)
+	for i in range(1, STEP_VARIANTS + 1):
+		var path := AUDIO_DIR + "step_%d.ogg" % i
+		if ResourceLoader.exists(path):
+			_steps.append(load(path))
+
+
 # ------------------------------------------------------------- synthesis
 func _build_streams() -> void:
 	# Gunshots: name, length, noise decay, low-pass, thump Hz, thump amount.
@@ -71,6 +91,7 @@ func _build_streams() -> void:
 	streams["shot_pistol_heavy"] = _gunshot(0.26, 18.0, 0.5, 95.0, 0.9)
 	streams["shot_shotgun"] = _gunshot(0.4, 11.0, 0.3, 70.0, 1.0)
 	streams["shot_sniper"] = _gunshot(0.6, 7.5, 0.35, 60.0, 1.0)
+	streams["shot_sniper_heavy"] = _gunshot(0.7, 6.5, 0.3, 50.0, 1.0)
 	streams["shot_suppressed"] = _gunshot(0.1, 45.0, 0.12, 200.0, 0.15)
 
 	streams["reload"] = _clicks([0.0, 0.16, 0.34], 0.42, 1500.0)

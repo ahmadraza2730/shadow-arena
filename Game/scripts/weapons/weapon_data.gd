@@ -47,6 +47,8 @@ var sound := "shot_rifle"
 var suppressed := false
 var attach_slots: Array[String] = []
 var attachments: Dictionary = {}          # slot -> attachment id (applied)
+## File name (without .glb) of the 3D model in third_party/flat_guns.
+var model := ""
 var model_length := 0.8
 var model_color := Color(0.2, 0.2, 0.2)
 
@@ -88,6 +90,7 @@ static func from_dict(row: Dictionary) -> WeaponData:
 	w.sound = row["sound"]
 	for slot_name: String in row["attach"]:
 		w.attach_slots.append(slot_name)
+	w.model = row.get("model", "")
 	w.model_length = row["length"]
 	var c: Array = row["color"]
 	w.model_color = Color(c[0], c[1], c[2])

@@ -234,7 +234,7 @@ func _update_viewmodel(delta: float, input_vector: Vector2) -> void:
 	var weapon := current_weapon()
 	var blend := 1.0 - exp(-10.0 * delta)
 	var ads := smoothstep(0.0, 1.0, ads_amount)
-	var sights := Vector3(0.0, -_viewmodel.sight_height, -0.3)
+	var sights := Vector3(0.0, -_viewmodel.sight_height, -0.4)
 	var target := HIP_POSITION.lerp(sights, ads)
 
 	# Walking bob (smaller when aiming).

@@ -1,100 +1,78 @@
 class_name CharacterVisual
 extends Node3D
-## A soldier built from boxes, animated in code: legs swing with movement
-## speed, the upper body pitches with the aim, the whole body lowers when
-## crouching and falls over on death. It stands in for a rigged character
-## until a real model (e.g. from Mixamo) is imported.
+## The soldier you see in the world: a rigged, animated human body
+## (Quaternius "Universal Animation Library" mannequin, CC0) dressed in
+## camouflage with a helmet, goggles, plate carrier and backpack, holding
+## the current weapon's 3D model.
+##
+## Animation is driven by an AnimationTree built in code:
+##   legs  = idle / walk / jog / sprint / crouch / jump / death, cross-faded
+##   arms  = a two-handed aim pose, blended over the upper body only
+##   spine = bent up/down by AimModifier to follow the aim pitch
 
-const SKIN := Color(0.78, 0.6, 0.46)
+const BODY_SCENE := "res://third_party/quaternius_ual/AnimationLibrary_Godot_Standard.gltf"
+const UPPER_BODY := ["spine.002", "spine.003", "neck", "head", "shoulder", "upper_arm",
+		"forearm", "hand", "f_index", "f_middle", "f_pinky", "f_ring", "thumb"]
+## Locomotion states: tree input name -> animation clip.
+const CLIPS := {
+	"idle": "Idle", "walk": "Walk", "jog": "Jog_Fwd", "sprint": "Sprint",
+	"crouch_idle": "Crouch_Idle", "crouch_walk": "Crouch_Fwd", "jump": "Jump",
+	"death": "Death01",
+}
+const AIM_CLIP := "Pistol_Aim_Neutral"
 
 var weapon_visual: WeaponVisual
-var _upper: Node3D            # torso + head + arms, pitches with aim
-var _hips: Node3D
-var _leg_left: Node3D
-var _leg_right: Node3D
+var _body: Node3D
+var _skeleton: Skeleton3D
+var _tree: AnimationTree
+var _aim: AimModifier
 var _meshes: Array[MeshInstance3D] = []
-var _walk_phase := 0.0
 var _team_material: StandardMaterial3D
-var _death_tween: Tween
+var _state := ""
+var _aim_blend := 1.0
+var _dead := false
+var _shadow_mode := GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 
 
 func _init() -> void:
-	# Materials: camouflage cloth, dark gear, skin, and one bright team
-	# colour used on the helmet and armbands so friend and foe read at a glance.
 	_team_material = StandardMaterial3D.new()
 	_team_material.roughness = 0.7
-	var camo := StandardMaterial3D.new()
-	camo.albedo_texture = load("res://assets/textures/camo_albedo.jpg")
-	camo.normal_enabled = true
-	camo.normal_texture = load("res://assets/textures/camo_normal.jpg")
-	camo.roughness = 0.95
-	camo.uv1_scale = Vector3(1.6, 1.6, 1.6)
-	camo.uv1_triplanar = true
-	var gear := StandardMaterial3D.new()
-	gear.albedo_color = Color(0.16, 0.17, 0.13)
-	gear.roughness = 0.9
-	var boot := StandardMaterial3D.new()
-	boot.albedo_color = Color(0.07, 0.06, 0.05)
-	boot.roughness = 0.6
-	var skin := StandardMaterial3D.new()
-	skin.albedo_color = SKIN
-	skin.roughness = 0.8
 
-	# --- Legs (each pivots at the hip) ---
-	_hips = Node3D.new()
-	_hips.position.y = 0.92
-	add_child(_hips)
-	_leg_left = _leg(-0.11, camo, gear, boot)
-	_leg_right = _leg(0.11, camo, gear, boot)
-	_part(_hips, Vector3(0.4, 0.14, 0.24), Vector3(0, 0.02, 0), gear)                 # belt
+	_body = (load(BODY_SCENE) as PackedScene).instantiate()
+	_body.rotation.y = PI          # the model faces +Z; fighters face -Z
+	add_child(_body)
+	_skeleton = _body.find_child("Skeleton3D", true, false)
+	var player: AnimationPlayer = _body.find_child("AnimationPlayer", true, false)
 
-	# --- Upper body (pitches with the aim) ---
-	_upper = Node3D.new()
-	_upper.position.y = 0.92
-	add_child(_upper)
-	_part(_upper, Vector3(0.4, 0.56, 0.22), Vector3(0, 0.3, 0), camo)                  # torso
-	_part(_upper, Vector3(0.44, 0.34, 0.27), Vector3(0, 0.36, 0), gear)                # plate carrier
-	for x: float in [-0.13, 0.0, 0.13]:
-		_part(_upper, Vector3(0.1, 0.13, 0.07), Vector3(x, 0.24, -0.16), gear)         # magazine pouches
-	_part(_upper, Vector3(0.3, 0.38, 0.14), Vector3(0, 0.36, 0.19), gear)              # backpack
-	_part(_upper, Vector3(0.11, 0.08, 0.11), Vector3(0, 0.6, 0), skin)                 # neck
-	_part(_upper, Vector3(0.19, 0.21, 0.2), Vector3(0, 0.72, 0), skin)                 # head
-	_part(_upper, Vector3(0.2, 0.05, 0.03), Vector3(0, 0.75, -0.1), boot)              # goggles
-	_part(_upper, Vector3(0.25, 0.12, 0.27), Vector3(0, 0.85, 0.0), _team_material)    # helmet
-	_part(_upper, Vector3(0.27, 0.03, 0.29), Vector3(0, 0.79, 0.0), gear)              # helmet rim
-	# Right arm: shoulder -> elbow -> hand on the grip.
-	_part(_upper, Vector3(0.11, 0.3, 0.12), Vector3(0.27, 0.42, -0.02), camo)
-	_part(_upper, Vector3(0.12, 0.07, 0.13), Vector3(0.27, 0.5, -0.02), _team_material)   # armband
-	_part(_upper, Vector3(0.09, 0.09, 0.3), Vector3(0.24, 0.32, -0.2), camo)
-	_part(_upper, Vector3(0.09, 0.09, 0.09), Vector3(0.2, 0.33, -0.36), boot)          # glove
-	# Left arm reaches across to the handguard.
-	_part(_upper, Vector3(0.11, 0.3, 0.12), Vector3(-0.27, 0.42, -0.02), camo)
-	_part(_upper, Vector3(0.12, 0.07, 0.13), Vector3(-0.27, 0.5, -0.02), _team_material)
-	_part(_upper, Vector3(0.09, 0.09, 0.46), Vector3(-0.12, 0.34, -0.3), camo, 0.55)
-	_part(_upper, Vector3(0.09, 0.09, 0.09), Vector3(0.06, 0.36, -0.56), boot)
+	_dress()
+	_build_animation_tree(player)
 
+	_aim = AimModifier.new()
+	_aim.chest_bone = _skeleton.find_bone("DEF-spine.003")
+	_aim.chest_reference = _pose_in_clip(player.get_animation(AIM_CLIP), _aim.chest_bone).basis
+	_skeleton.add_child(_aim)
+
+	# The weapon rides on the right hand. Its offset is solved once from
+	# the aim pose so that the barrel points straight ahead.
 	weapon_visual = WeaponVisual.new()
-	weapon_visual.position = Vector3(0.18, 0.4, -0.38)
-	_upper.add_child(weapon_visual)
+	var hand := BoneAttachment3D.new()
+	hand.bone_name = "DEF-hand.R"
+	_skeleton.add_child(hand)
+	hand.add_child(weapon_visual)
+	# Target in model space: barrel along +Z (model forward), grip in the palm.
+	var hand_pose := _pose_in_clip(player.get_animation(AIM_CLIP), _skeleton.find_bone("DEF-hand.R"))
+	var grip := Transform3D(Basis(Vector3.UP, PI), hand_pose.origin + Vector3(0.0, 0.07, 0.04))
+	weapon_visual.transform = hand_pose.affine_inverse() * grip
 
 
-## A leg: a hip pivot with thigh/shin, knee pad and boot hanging below it.
-func _leg(x: float, cloth: Material, pad: Material, boot: Material) -> Node3D:
-	var pivot := Node3D.new()
-	pivot.position = Vector3(x, 0, 0)
-	_hips.add_child(pivot)
-	_part(pivot, Vector3(0.15, 0.8, 0.17), Vector3(0, -0.4, 0), cloth)
-	_part(pivot, Vector3(0.16, 0.1, 0.06), Vector3(0, -0.44, -0.09), pad)
-	_part(pivot, Vector3(0.16, 0.13, 0.27), Vector3(0, -0.855, -0.04), boot)
-	return pivot
-
-
+# ------------------------------------------------------------------ public
 func set_team_color(color: Color) -> void:
-	_team_material.albedo_color = color
+	_team_material.albedo_color = color.darkened(0.15)
 
 
 func set_weapon(data: WeaponData) -> void:
 	weapon_visual.build(data, true)
+	weapon_visual.set_shadow_mode(_shadow_mode)
 
 
 ## World position of the muzzle of the held weapon.
@@ -105,64 +83,197 @@ func muzzle_position() -> Vector3:
 ## In first person the local player's own body is hidden but keeps casting
 ## a shadow.
 func set_shadow_only(shadow_only: bool) -> void:
-	var mode := (GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY if shadow_only
+	_shadow_mode = (GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY if shadow_only
 			else GeometryInstance3D.SHADOW_CASTING_SETTING_ON)
 	for mesh in _meshes:
-		mesh.cast_shadow = mode
-	for child in weapon_visual.get_children():
-		if child is MeshInstance3D:
-			child.cast_shadow = mode
+		mesh.cast_shadow = _shadow_mode
+	weapon_visual.set_shadow_mode(_shadow_mode)
 
 
 ## Call every frame. `height` is the capsule height (stand 1.8, crouch 1.1).
 func animate(delta: float, horizontal_speed: float, height: float, pitch: float,
 		on_floor: bool) -> void:
-	# Crouch: lower the hips and fold the legs.
-	var crouch := clampf((1.8 - height) / 0.7, 0.0, 1.0)
-	var hip_y := lerpf(0.92, 0.5, crouch)
-	_hips.position.y = hip_y
-	_upper.position.y = hip_y
-	_upper.rotation.x = pitch * 0.8
-
-	# Walk cycle: phase advances with distance covered.
-	var swing := 0.0
-	if on_floor and horizontal_speed > 0.3:
-		_walk_phase += delta * horizontal_speed * 2.6
-		swing = sin(_walk_phase) * clampf(horizontal_speed / 5.0, 0.2, 1.0) * 0.7
-	var fold := crouch * 1.1
-	_leg_left.rotation.x = swing + fold
-	_leg_right.rotation.x = -swing + fold * 0.3
+	if _dead:
+		return
+	var crouched := height < 1.5
+	var state := "idle"
 	if not on_floor:
-		_leg_left.rotation.x = 0.5
-		_leg_right.rotation.x = -0.3
+		state = "jump"
+	elif crouched:
+		state = "crouch_walk" if horizontal_speed > 0.4 else "crouch_idle"
+	elif horizontal_speed > 6.2:
+		state = "sprint"
+	elif horizontal_speed > 3.2:
+		state = "jog"
+	elif horizontal_speed > 0.4:
+		state = "walk"
+	_set_state(state)
+
+	# Sprinting lowers the weapon; otherwise it is held up and aimed.
+	var target_aim := 0.25 if state == "sprint" else 1.0
+	_aim_blend = move_toward(_aim_blend, target_aim, delta * 5.0)
+	_tree.set("parameters/aim/blend_amount", _aim_blend)
+	_aim.pitch = pitch
+	_aim.weight = _aim_blend
 
 
 func play_death() -> void:
-	if _death_tween:
-		_death_tween.kill()
-	_death_tween = create_tween()
-	_death_tween.tween_property(self, "rotation:x", -PI * 0.5, 0.35) \
-			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	_death_tween.parallel().tween_property(self, "position:y", 0.15, 0.35)
+	_dead = true
+	_aim.weight = 0.0
+	_tree.set("parameters/aim/blend_amount", 0.0)
+	_set_state("death")
 
 
 func reset_pose() -> void:
-	if _death_tween:
-		_death_tween.kill()
-	rotation = Vector3.ZERO
-	position = Vector3.ZERO
+	_dead = false
+	_aim.weight = 1.0
+	_aim_blend = 1.0
+	_tree.set("parameters/aim/blend_amount", 1.0)
+	_set_state("idle")
 
 
-func _part(parent: Node3D, size: Vector3, position: Vector3, material: Material,
-		yaw: float = 0.0) -> MeshInstance3D:
+# ------------------------------------------------------------------- setup
+func _set_state(state: String) -> void:
+	if state == _state:
+		return
+	_state = state
+	_tree.set("parameters/legs/transition_request", state)
+
+
+## Camouflage and gear on the body, plus helmet, goggles, vest and pack.
+func _dress() -> void:
+	var camo := StandardMaterial3D.new()
+	camo.albedo_texture = load("res://assets/textures/camo_albedo.jpg")
+	camo.normal_enabled = true
+	camo.normal_texture = load("res://assets/textures/camo_normal.jpg")
+	camo.roughness = 0.95
+	camo.uv1_scale = Vector3(1.8, 1.8, 1.8)
+	camo.uv1_triplanar = true
+	camo.albedo_color = Color(0.85, 0.85, 0.8)
+	var gear := StandardMaterial3D.new()
+	gear.albedo_color = Color(0.13, 0.14, 0.11)
+	gear.roughness = 0.9
+	var lens := StandardMaterial3D.new()
+	lens.albedo_color = Color(0.03, 0.03, 0.04)
+	lens.roughness = 0.15
+	lens.metallic = 0.4
+
+	var body_mesh: MeshInstance3D = _body.find_child("Mannequin", true, false)
+	body_mesh.set_surface_override_material(0, camo)     # cloth
+	body_mesh.set_surface_override_material(1, gear)     # joints -> pads
+	body_mesh.layers = 2
+	_meshes.append(body_mesh)
+
+	# Gear positions are given in the model's rest pose (metres, model
+	# faces +Z) and converted into each bone's local space.
+	var helmet := SphereMesh.new()
+	helmet.radius = 0.135
+	helmet.height = 0.22
+	helmet.radial_segments = 16
+	helmet.rings = 8
+	_gear("DEF-head", helmet, Vector3(0, 1.765, -0.005), _team_material)
+	_gear("DEF-head", _box_mesh(Vector3(0.17, 0.05, 0.03)), Vector3(0, 1.7, 0.118), lens)      # goggles
+	_gear("DEF-spine.003", _box_mesh(Vector3(0.36, 0.33, 0.25)), Vector3(0, 1.3, 0.01), gear)   # plate carrier
+	_gear("DEF-spine.003", _box_mesh(Vector3(0.26, 0.34, 0.12)), Vector3(0, 1.3, -0.17), gear)  # backpack
+	# Team-colour armbands follow the upper arms (bone space: Y runs along the bone).
+	for side: String in ["L", "R"]:
+		var band := _attach("DEF-upper_arm." + side)
+		_add_mesh(band, _box_mesh(Vector3(0.125, 0.07, 0.125)),
+				Transform3D(Basis.IDENTITY, Vector3(0, 0.1, 0)), _team_material)
+
+
+func _attach(bone: String) -> BoneAttachment3D:
+	var attachment := BoneAttachment3D.new()
+	attachment.bone_name = bone
+	_skeleton.add_child(attachment)
+	return attachment
+
+
+func _gear(bone: String, mesh: Mesh, rest_position: Vector3, material: Material) -> void:
+	var attachment := _attach(bone)
+	var bone_rest := _skeleton.get_bone_global_rest(_skeleton.find_bone(bone))
+	_add_mesh(attachment, mesh, bone_rest.affine_inverse() * Transform3D(Basis.IDENTITY, rest_position),
+			material)
+
+
+func _box_mesh(size: Vector3) -> BoxMesh:
 	var mesh := BoxMesh.new()
 	mesh.size = size
-	mesh.material = material
+	return mesh
+
+
+func _add_mesh(parent: Node3D, mesh: Mesh, xform: Transform3D, material: Material) -> void:
 	var instance := MeshInstance3D.new()
 	instance.mesh = mesh
-	instance.position = position
-	instance.rotation.y = yaw
-	instance.layers = 2        # render layer 2 = characters (decals skip them)
+	instance.material_override = material
+	instance.transform = xform
+	instance.layers = 2
 	parent.add_child(instance)
 	_meshes.append(instance)
-	return instance
+
+
+func _build_animation_tree(player: AnimationPlayer) -> void:
+	var root := AnimationNodeBlendTree.new()
+
+	# Legs: one input per locomotion clip, cross-faded on request.
+	var legs := AnimationNodeTransition.new()
+	legs.xfade_time = 0.18
+	legs.input_count = CLIPS.size()
+	root.add_node("legs", legs)
+	var index := 0
+	for state: String in CLIPS:
+		legs.set_input_name(index, state)
+		var clip := AnimationNodeAnimation.new()
+		clip.animation = CLIPS[state]
+		root.add_node("clip_" + state, clip)
+		root.connect_node("legs", index, "clip_" + state)
+		index += 1
+
+	# Arms: the aim pose, applied only to upper-body bones.
+	var aim_clip := AnimationNodeAnimation.new()
+	aim_clip.animation = AIM_CLIP
+	root.add_node("aim_pose", aim_clip)
+	var aim := AnimationNodeBlend2.new()
+	aim.filter_enabled = true
+	var animation := player.get_animation(AIM_CLIP)
+	for track in animation.get_track_count():
+		var path := animation.track_get_path(track)
+		var bone := str(path.get_concatenated_subnames())
+		for part: String in UPPER_BODY:
+			if bone.contains(part):
+				aim.set_filter_path(path, true)
+				break
+	root.add_node("aim", aim)
+	root.connect_node("aim", 0, "legs")
+	root.connect_node("aim", 1, "aim_pose")
+	root.connect_node("output", 0, "aim")
+
+	_tree = AnimationTree.new()
+	_tree.tree_root = root
+	_body.add_child(_tree)
+	_tree.anim_player = _tree.get_path_to(player)
+	_tree.active = true
+	_tree.set("parameters/aim/blend_amount", 1.0)
+	_set_state("idle")
+
+
+## Where a bone is (skeleton space) at the start of an animation clip.
+## Walks up the bone chain sampling each bone's tracks at time 0, using
+## the rest pose for bones the clip does not animate.
+func _pose_in_clip(animation: Animation, bone: int) -> Transform3D:
+	var pose := Transform3D.IDENTITY
+	var current := bone
+	while current >= 0:
+		var local := _skeleton.get_bone_rest(current)
+		var bone_name := _skeleton.get_bone_name(current)
+		for track in animation.get_track_count():
+			if str(animation.track_get_path(track).get_concatenated_subnames()) != bone_name:
+				continue
+			match animation.track_get_type(track):
+				Animation.TYPE_ROTATION_3D:
+					local.basis = Basis(animation.rotation_track_interpolate(track, 0.0))
+				Animation.TYPE_POSITION_3D:
+					local.origin = animation.position_track_interpolate(track, 0.0)
+		pose = local * pose
+		current = _skeleton.get_bone_parent(current)
+	return pose

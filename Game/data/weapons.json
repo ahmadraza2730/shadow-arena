@@ -1,5 +1,5 @@
 [
- {"id":"ar_kestrel","name":"KR-4 Kestrel","style":"M416-style","category":"ar","slot":"primary",
+ {"id":"ar_kestrel","model":"rifle_assault_west","name":"KR-4 Kestrel","style":"M416-style","category":"ar","slot":"primary",
   "damage":24,"headshot_mult":1.8,"rpm":700,"mag":30,"reload":2.1,
   "falloff_start":40,"falloff_end":90,"min_damage_mult":0.75,"max_range":300,
   "modes":["auto","semi"],"pellets":1,
@@ -9,7 +9,7 @@
   "ads_fov":58,"ads_time":0.2,"projectile":false,"bullet_speed":880,"drop":1.0,"move_mult":0.95,
   "sound":"shot_rifle","attach":["scope","grip","muzzle","magazine"],"length":0.85,"color":[0.16,0.17,0.18]},
 
- {"id":"ar_vulture","name":"VK-7 Vulture","style":"AKM-style","category":"ar","slot":"primary",
+ {"id":"ar_vulture","model":"rifle_assault_east","name":"VK-7 Vulture","style":"AKM-style","category":"ar","slot":"primary",
   "damage":30,"headshot_mult":1.8,"rpm":600,"mag":30,"reload":2.6,
   "falloff_start":35,"falloff_end":85,"min_damage_mult":0.75,"max_range":300,
   "modes":["auto","semi"],"pellets":1,
@@ -19,7 +19,7 @@
   "ads_fov":58,"ads_time":0.23,"projectile":false,"bullet_speed":715,"drop":1.0,"move_mult":0.93,
   "sound":"shot_rifle_heavy","attach":["scope","muzzle","magazine"],"length":0.88,"color":[0.3,0.2,0.12]},
 
- {"id":"sr_sentinel","name":"SR-24 Sentinel","style":"M24-style","category":"sniper","slot":"primary",
+ {"id":"sr_sentinel","model":"sniper_rifle_west","name":"SR-24 Sentinel","style":"M24-style","category":"sniper","slot":"primary",
   "damage":79,"headshot_mult":2.5,"rpm":50,"mag":5,"reload":3.4,
   "falloff_start":150,"falloff_end":300,"min_damage_mult":0.9,"max_range":400,
   "modes":["bolt"],"pellets":1,
@@ -29,7 +29,7 @@
   "ads_fov":22,"ads_time":0.35,"projectile":true,"bullet_speed":790,"drop":1.0,"move_mult":0.9,
   "sound":"shot_sniper","attach":["scope","muzzle","magazine"],"length":1.15,"color":[0.22,0.26,0.2]},
 
- {"id":"sr_leviathan","name":"LM-338 Leviathan","style":"AWM-style","category":"sniper","slot":"primary",
+ {"id":"sr_leviathan","model":"sniper_material_west","name":"LM-338 Leviathan","style":"AWM-style","category":"sniper","slot":"primary",
   "damage":105,"headshot_mult":2.5,"rpm":40,"mag":5,"reload":3.8,
   "falloff_start":200,"falloff_end":400,"min_damage_mult":0.95,"max_range":500,
   "modes":["bolt"],"pellets":1,
@@ -37,9 +37,9 @@
   "recoil":[[5.0,0.6]],
   "recoil_random":0.5,"recoil_recovery":0.8,
   "ads_fov":22,"ads_time":0.42,"projectile":true,"bullet_speed":910,"drop":1.0,"move_mult":0.86,
-  "sound":"shot_sniper","attach":["scope","muzzle","magazine"],"length":1.25,"color":[0.3,0.33,0.24]},
+  "sound":"shot_sniper_heavy","attach":["scope","muzzle","magazine"],"length":1.25,"color":[0.3,0.33,0.24]},
 
- {"id":"smg_mongoose","name":"UP-45 Mongoose","style":"UMP-style","category":"smg","slot":"primary",
+ {"id":"smg_mongoose","model":"smg_full_west","name":"UP-45 Mongoose","style":"UMP-style","category":"smg","slot":"primary",
   "damage":20,"headshot_mult":1.6,"rpm":670,"mag":25,"reload":2.0,
   "falloff_start":20,"falloff_end":50,"min_damage_mult":0.6,"max_range":150,
   "modes":["auto","burst","semi"],"pellets":1,
@@ -49,7 +49,7 @@
   "ads_fov":60,"ads_time":0.16,"projectile":false,"bullet_speed":300,"drop":1.0,"move_mult":1.0,
   "sound":"shot_smg","attach":["scope","grip","muzzle","magazine"],"length":0.6,"color":[0.14,0.14,0.15]},
 
- {"id":"smg_hornet","name":"VX-9 Hornet","style":"Vector-style","category":"smg","slot":"primary",
+ {"id":"smg_hornet","model":"smg_compact_east","name":"VX-9 Hornet","style":"Vector-style","category":"smg","slot":"primary",
   "damage":16,"headshot_mult":1.6,"rpm":1100,"mag":19,"reload":1.8,
   "falloff_start":15,"falloff_end":40,"min_damage_mult":0.55,"max_range":120,
   "modes":["auto","burst","semi"],"pellets":1,
@@ -59,7 +59,7 @@
   "ads_fov":60,"ads_time":0.15,"projectile":false,"bullet_speed":380,"drop":1.0,"move_mult":1.02,
   "sound":"shot_smg","attach":["scope","grip","muzzle","magazine"],"length":0.5,"color":[0.2,0.2,0.22]},
 
- {"id":"sg_bulldog","name":"S-12 Bulldog","style":"S12K-style","category":"shotgun","slot":"primary",
+ {"id":"sg_bulldog","model":"shotgun_auto_east","name":"S-12 Bulldog","style":"S12K-style","category":"shotgun","slot":"primary",
   "damage":11,"headshot_mult":1.25,"rpm":250,"mag":5,"reload":2.6,
   "falloff_start":8,"falloff_end":30,"min_damage_mult":0.3,"max_range":60,
   "modes":["semi"],"pellets":8,
@@ -69,7 +69,7 @@
   "ads_fov":60,"ads_time":0.22,"projectile":false,"bullet_speed":350,"drop":1.0,"move_mult":0.94,
   "sound":"shot_shotgun","attach":["scope","muzzle","magazine"],"length":0.9,"color":[0.12,0.12,0.12]},
 
- {"id":"pistol_wasp","name":"P-18 Wasp","style":"P18C-style","category":"pistol","slot":"secondary",
+ {"id":"pistol_wasp","model":"pistol_compact_west","name":"P-18 Wasp","style":"P18C-style","category":"pistol","slot":"secondary",
   "damage":14,"headshot_mult":1.8,"rpm":1000,"mag":17,"reload":1.6,
   "falloff_start":15,"falloff_end":40,"min_damage_mult":0.6,"max_range":100,
   "modes":["auto","semi"],"pellets":1,
@@ -79,7 +79,7 @@
   "ads_fov":62,"ads_time":0.12,"projectile":false,"bullet_speed":375,"drop":1.0,"move_mult":1.05,
   "sound":"shot_pistol","attach":["scope","muzzle","magazine"],"length":0.22,"color":[0.15,0.15,0.16]},
 
- {"id":"pistol_falcon","name":"DE-50 Falcon","style":"Desert Eagle-style","category":"pistol","slot":"secondary",
+ {"id":"pistol_falcon","model":"pistol_full_east","name":"DE-50 Falcon","style":"Desert Eagle-style","category":"pistol","slot":"secondary",
   "damage":48,"headshot_mult":2.1,"rpm":220,"mag":7,"reload":2.0,
   "falloff_start":25,"falloff_end":60,"min_damage_mult":0.7,"max_range":150,
   "modes":["semi"],"pellets":1,

@@ -11,25 +11,14 @@
 *.gdshader  text eol=lf
 *.md        text eol=lf
 
-# ---- Git LFS: big binary files (run "git lfs install" once) ----
+# Binary assets are small enough to live in Git directly (no Git LFS).
+# If large files (over ~50 MB) are ever added, set up Git LFS for them.
+*.glb binary
+*.bin binary
+*.ogg binary
+*.jpg binary
+*.png binary
 # Textures (small generated .jpg/.png files are stored in Git directly)
-*.tga  filter=lfs diff=lfs merge=lfs -text
-*.exr  filter=lfs diff=lfs merge=lfs -text
-*.hdr  filter=lfs diff=lfs merge=lfs -text
-*.psd  filter=lfs diff=lfs merge=lfs -text
 # Models / animation
-*.glb   filter=lfs diff=lfs merge=lfs -text
-*.gltf  filter=lfs diff=lfs merge=lfs -text
-*.fbx   filter=lfs diff=lfs merge=lfs -text
-*.obj   filter=lfs diff=lfs merge=lfs -text
-*.blend filter=lfs diff=lfs merge=lfs -text
 # Audio / video
-*.wav filter=lfs diff=lfs merge=lfs -text
-*.mp3 filter=lfs diff=lfs merge=lfs -text
-*.ogg filter=lfs diff=lfs merge=lfs -text
-*.ogv filter=lfs diff=lfs merge=lfs -text
 # Baked lightmaps, fonts, archives
-*.lmbake filter=lfs diff=lfs merge=lfs -text
-*.ttf filter=lfs diff=lfs merge=lfs -text
-*.otf filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text

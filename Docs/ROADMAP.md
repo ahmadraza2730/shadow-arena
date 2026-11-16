@@ -15,8 +15,10 @@ your eyes/hands on a real PC, [ ] not started.
 - [~] 10. Art pass: generated texture sets (colour/normal/roughness) on every
         surface, set dressing, cloud sky, sun, fog, bloom, 3 weather presets.
         No imported models yet, no baked lightmaps.
-- [~] 11. Animation, sound, VFX: all procedural placeholders (box soldier,
-        box guns, synthesised sounds, pooled particles/decals/tracers).
+- [~] 11. Animation, sound, VFX: rigged animated soldiers (idle, walk, jog,
+        sprint, crouch, jump, death, aim), real gun models, recorded
+        gunshots and footsteps. Still missing: first-person arms, reload and
+        firing animations on the body, faces/uniform meshes.
 - [x] 12. HUD, main menu, pause menu, settings, end screen
 - [~] 13. Low/Medium/High presets are in. FPS has not been measured on the
         target laptop - see GRAPHICS.md for the tuning plan.
