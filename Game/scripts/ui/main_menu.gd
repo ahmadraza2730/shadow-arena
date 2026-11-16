@@ -80,6 +80,8 @@ func _join_from_link(code: String) -> void:
 			Game.menu_message = "Could not connect: " + Net.status
 			_show_online()
 			return
+	if Net.is_online():
+		return
 	Net.join_room(code)
 	Game.start_match()
 

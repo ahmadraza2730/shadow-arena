@@ -73,6 +73,8 @@ func _on_status(text: String) -> void:
 
 
 func _on_host() -> void:
+	if Net.is_online():
+		return            # already starting (double click)
 	Net.host_room()
 	Game.start_match()
 
@@ -82,6 +84,8 @@ func _on_join(code: String) -> void:
 	if code.length() != 4:
 		_status.text = "Room codes have 4 letters/numbers"
 		return
+	if Net.is_online():
+		return            # already joining (double click)
 	Net.join_room(code)
 	Game.start_match()
 

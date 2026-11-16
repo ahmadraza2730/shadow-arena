@@ -70,6 +70,12 @@ async def handler(ws):
             if event == "heartbeat":
                 send(ws, reply)
             elif event == "phx_join":
+                old = subs.get(topic, {}).get(ws)
+                if old:
+                    # Like Phoenix: a second join of the same topic closes the first one.
+                    send(ws, {"topic": topic, "event": "phx_close", "payload": {}, "ref": old["join_ref"],
+                              "join_ref": old["join_ref"]})
+                    drop(ws, topic)
                 cfg = payload.get("config", {})
                 pres = cfg.get("presence", {})
                 enabled = pres.get("enabled", False) or bool(pres.get("key"))

@@ -21,6 +21,8 @@ func _physics_process(_d: float) -> void:
 	f += 1
 	if phase == 0 and Net.is_connected_to_relay():
 		var code := Net.host_room()
+		Net.host_room()
+		Net.open_lobby()
 		var fa := FileAccess.open("/tmp/sa_room.txt", FileAccess.WRITE); fa.store_string(code); fa.close()
 		m = load("res://scenes/match.tscn").instantiate(); add_child(m)
 		phase = 1

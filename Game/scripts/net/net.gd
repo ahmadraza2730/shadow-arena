@@ -143,8 +143,8 @@ func open_lobby() -> void:
 	if not _client.is_open:
 		_set_status("Connecting...")
 		_client.open(NetConfig.socket_url())
-	elif not _client.is_joined(_lobby_topic):
-		_client.join(_lobby_topic, my_id)
+	else:
+		_client.join(_lobby_topic, my_id)     # no-op if already joined / joining
 
 
 func close_lobby() -> void:
@@ -158,6 +158,8 @@ func close_lobby() -> void:
 # ------------------------------------------------------------ host / join
 ## Creates a room and becomes its host. The match scene is loaded by the caller.
 func host_room() -> String:
+	if role != Role.OFFLINE:
+		return room_code
 	open_lobby()
 	room_code = ""
 	for i in 4:
@@ -186,6 +188,8 @@ func update_room_listing(state: String) -> void:
 ## Joins someone else's room by code. The match scene waits for the
 ## host's first snapshot.
 func join_room(code: String) -> void:
+	if role != Role.OFFLINE:
+		return
 	open_lobby()
 	room_code = code.strip_edges().to_upper()
 	role = Role.CLIENT
@@ -211,10 +215,9 @@ func leave_room(reason: String = "") -> void:
 		_client.leave(_uplink_topic)
 	if _room_topic != "":
 		_client.leave(_room_topic)
-	if role == Role.HOST and _client.is_joined(_lobby_topic):
-		# Re-joining the lobby without tracking removes our room listing.
-		_client.leave(_lobby_topic)
-		_client.join(_lobby_topic, my_id)
+	if role == Role.HOST:
+		# Publishing an empty entry removes our room from the server list.
+		_client.track(_lobby_topic, {"closed": true})
 	role = Role.OFFLINE
 	_room_topic = ""
 	_uplink_topic = ""

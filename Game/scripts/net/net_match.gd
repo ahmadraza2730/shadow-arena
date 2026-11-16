@@ -20,6 +20,8 @@ const HISTORY_TIME := 1.0
 const MAX_REWIND := 0.6
 const ROSTER_RESEND := 2.0
 const HELLO_INTERVAL := 1.0
+## Joiner: give up if the host has not let us in after this much game time.
+const JOIN_TIMEOUT := 20.0
 
 var match_ref: TdmMatch
 ## A new id per match, so joiners notice when the host restarts.
@@ -71,6 +73,9 @@ func _physics_process(delta: float) -> void:
 		_send_left -= delta
 		_hello_left -= delta
 		if not welcomed:
+			if _local_time > JOIN_TIMEOUT:
+				Net.leave_room("Room %s not found, or the host is not responding" % Net.room_code)
+				return
 			if _hello_left <= 0.0:
 				_hello_left = HELLO_INTERVAL
 				Net.send_uplink("hello", {"name": Net.player_name(), "mid": match_id,

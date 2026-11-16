@@ -25,6 +25,10 @@ func _physics_process(_d: float) -> void:
 		if Net.rooms.is_empty() and f < 600: return
 		ok("server list shows the host's room", Net.rooms.size() == 1, Net.rooms.keys())
 		Net.join_room(FileAccess.get_file_as_string("/tmp/sa_room.txt"))
+		# Double click on JOIN must not break anything.
+		Net.join_room(FileAccess.get_file_as_string("/tmp/sa_room.txt"))
+		Net._client.join(Net._room_topic, Net.my_id)
+		Net.open_lobby()
 		m = load("res://scenes/match.tscn").instantiate(); add_child(m)
 		phase = 1
 	if m == null: return

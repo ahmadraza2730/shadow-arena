@@ -68,6 +68,9 @@ func close() -> void:
 ## presence_key: "" = presence off, otherwise this client's presence key.
 func join(topic: String, presence_key: String = "") -> void:
 	var full := "realtime:" + topic
+	# Joining twice would make the server close the first join; once is enough.
+	if _channels.has(full):
+		return
 	_ref += 1
 	var join_ref := str(_ref)
 	var config := {
@@ -211,6 +214,8 @@ func _handle(message: Dictionary) -> void:
 			if payload is Dictionary and payload.get("status", "") == "error":
 				channel_error.emit(short, str(payload.get("message", "channel error")))
 		"phx_error", "phx_close":
-			if _channels.has(topic):
+			# Only react if it is about our current join of this topic, not
+			# an older join we already replaced or left.
+			if _channels.has(topic) and str(message.get("join_ref", "")) == _channels[topic]["join_ref"]:
 				_channels[topic]["joined"] = false
 				channel_error.emit(short, "channel closed by server")
