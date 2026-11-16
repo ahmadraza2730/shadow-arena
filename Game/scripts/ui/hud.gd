@@ -30,6 +30,8 @@ var _pause_panel: PanelContainer
 var _pause_content: VBoxContainer
 var _end_panel: PanelContainer
 
+var _net_label: Label
+var _menu_open := false
 var _hit_marker := 0.0
 var _hit_color := Color.WHITE
 var _damage_flash := 0.0
@@ -133,6 +135,10 @@ func _build() -> void:
 	_fps_label = UiKit.label("", 14, UiKit.DIM)
 	_fps_label.position = Vector2(12, 10)
 	root.add_child(_fps_label)
+	# --- Under it: online room info ---
+	_net_label = UiKit.label("", 14, UiKit.ACCENT)
+	_net_label.position = Vector2(12, 30)
+	root.add_child(_net_label)
 
 	# --- Bottom left: health ---
 	var health_box := VBoxContainer.new()
@@ -210,7 +216,7 @@ func _build_pause(root: Control) -> void:
 	buttons.add_child(UiKit.button("RESUME", _set_paused.bind(false)))
 	buttons.add_child(UiKit.button("LOADOUT", _pause_show.bind("loadout")))
 	buttons.add_child(UiKit.button("SETTINGS", _pause_show.bind("settings")))
-	buttons.add_child(UiKit.button("MAIN MENU", Game.goto_menu))
+	buttons.add_child(UiKit.button("LEAVE MATCH" if Net.is_online() else "MAIN MENU", Game.goto_menu))
 	columns.add_child(buttons)
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -238,17 +244,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("pause") and _match.state != TdmMatch.MatchState.ENDED \
 			and _match.state != TdmMatch.MatchState.LOADING:
-		_set_paused(not get_tree().paused)
+		_set_paused(not _menu_open)
 		get_viewport().set_input_as_handled()
-	elif event is InputEventMouseButton and event.pressed and not get_tree().paused \
+	elif event is InputEventMouseButton and event.pressed and not _menu_open \
 			and _match.state in [TdmMatch.MatchState.PLAYING, TdmMatch.MatchState.COUNTDOWN] \
 			and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		# Clicking the window grabs the mouse again (e.g. after Alt+Tab).
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
+## Opens or closes the pause menu. Offline the game freezes; online it
+## keeps running (other players do not stop), only your controls stop.
 func _set_paused(paused: bool) -> void:
-	get_tree().paused = paused
+	_menu_open = paused
+	if not Net.is_online():
+		get_tree().paused = paused
 	_pause_panel.visible = paused
 	if paused:
 		_pause_show("settings")
@@ -301,12 +311,19 @@ func _process(delta: float) -> void:
 	_hit_marker = maxf(_hit_marker - delta, 0.0)
 	_update_center(delta)
 
+	if Net.is_online():
+		var text := "ROOM %s   %d/%d players" % [Net.room_code, Net.human_count(), Net.MAX_HUMANS]
+		if Net.is_client() and _match.net:
+			text += "   %d ms" % int(_match.net.ping_ms)
+		elif Net.is_host():
+			text += "   (you are the host)"
+		_net_label.text = text
 	_fps_label.visible = bool(Game.settings["show_fps"])
 	if _fps_label.visible:
 		_fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
 	# Scoreboard while Tab is held (always on the end screen).
-	var show_board := Input.is_action_pressed("scoreboard") and not get_tree().paused \
+	var show_board := Input.is_action_pressed("scoreboard") and not _menu_open \
 			and _match.state != TdmMatch.MatchState.ENDED
 	_scoreboard.visible = show_board
 	if show_board:
@@ -512,10 +529,13 @@ func _show_end_screen() -> void:
 	var buttons := HBoxContainer.new()
 	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
 	buttons.add_theme_constant_override("separation", 12)
-	var again := UiKit.button("PLAY AGAIN", Game.start_match)
-	again.custom_minimum_size = Vector2(180, 44)
-	buttons.add_child(again)
-	var menu := UiKit.button("MAIN MENU", Game.goto_menu)
+	if Net.is_client():
+		buttons.add_child(UiKit.label("Waiting for the host to start the next match...", 16, UiKit.DIM))
+	else:
+		var again := UiKit.button("PLAY AGAIN", Game.start_match)
+		again.custom_minimum_size = Vector2(180, 44)
+		buttons.add_child(again)
+	var menu := UiKit.button("LEAVE" if Net.is_online() else "MAIN MENU", Game.goto_menu)
 	menu.custom_minimum_size = Vector2(180, 44)
 	buttons.add_child(menu)
 	box.add_child(buttons)

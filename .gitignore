@@ -9,7 +9,7 @@
 /Builds/
 
 # The Godot editor itself, if kept beside the project
-/Tools/
+/Tools/godot/
 
 # IDE / OS junk
 .vs/

@@ -6,6 +6,7 @@ var _content: PanelContainer
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Music.play("menu")
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	# Background: dark vertical gradient.
@@ -43,7 +44,8 @@ func _ready() -> void:
 	var spacer := Control.new()
 	spacer.custom_minimum_size = Vector2(0, 24)
 	left.add_child(spacer)
-	left.add_child(UiKit.button("PLAY", Game.start_match, 22))
+	left.add_child(UiKit.button("PLAY VS BOTS", _play_offline, 22))
+	left.add_child(UiKit.button("PLAY ONLINE", _show_online, 22))
 	left.add_child(UiKit.button("LOADOUT", _show_loadout))
 	left.add_child(UiKit.button("SETTINGS", _show_settings))
 	left.add_child(UiKit.button("CONTROLS", _show_controls))
@@ -54,7 +56,19 @@ func _ready() -> void:
 	_content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_content.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	columns.add_child(_content)
-	_show_loadout()
+	if Game.menu_message != "":
+		_show_online()
+	else:
+		_show_loadout()
+
+
+func _play_offline() -> void:
+	Net.close_lobby()
+	Game.start_match()
+
+
+func _show_online() -> void:
+	_swap(OnlinePanel.new())
 
 
 func _swap(panel: Control) -> void:
@@ -69,10 +83,12 @@ func _swap(panel: Control) -> void:
 
 func _show_loadout() -> void:
 	_swap(LoadoutPanel.new())
+	Net.close_lobby()
 
 
 func _show_settings() -> void:
 	_swap(SettingsPanel.new())
+	Net.close_lobby()
 
 
 func _show_controls() -> void:

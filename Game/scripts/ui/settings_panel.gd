@@ -19,9 +19,11 @@ func _ready() -> void:
 	add_child(UiKit.row("Mouse sensitivity", _slider("sensitivity", 0.2, 3.0, 0.05)))
 	add_child(UiKit.row("Field of view", _slider("fov", 60.0, 100.0, 1.0)))
 	add_child(UiKit.row("Start in third person", _check("third_person")))
+	add_child(UiKit.row("Aim assist", _options(Game.AIM_ASSIST_NAMES, "aim_assist")))
 
 	add_child(UiKit.label("Audio", 17))
 	add_child(UiKit.row("Master volume", _slider("volume", 0.0, 1.0, 0.05)))
+	add_child(UiKit.row("Music volume", _slider("music_volume", 0.0, 1.0, 0.05)))
 	add_child(UiKit.label("Quality and time of day apply to the next match.", 13, UiKit.DIM))
 
 

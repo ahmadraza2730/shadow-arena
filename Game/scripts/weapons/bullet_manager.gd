@@ -17,6 +17,11 @@ var _bullets: Array[Dictionary] = []
 
 
 func fire(shooter: Combatant, data: WeaponData, origin: Vector3, direction: Vector3) -> void:
+	# Online, a joiner's bullets are only drawn: the host decides what they
+	# hit. The joiner's own shots are also sent to the host.
+	var visual_only := Net.is_client()
+	if visual_only and Game.match_node and shooter == Game.match_node.player and Game.match_node.net:
+		Game.match_node.net.queue_shot(shooter.weapon_index, origin, direction)
 	if data.projectile:
 		_bullets.append({
 			"pos": origin,
@@ -24,6 +29,7 @@ func fire(shooter: Combatant, data: WeaponData, origin: Vector3, direction: Vect
 			"shooter": shooter,
 			"data": data,
 			"travelled": 0.0,
+			"visual": visual_only,
 		})
 		return
 
@@ -34,7 +40,7 @@ func fire(shooter: Combatant, data: WeaponData, origin: Vector3, direction: Vect
 		Game.vfx.tracer(tracer_from, end)
 	else:
 		Game.vfx.tracer(tracer_from, hit["position"])
-		_resolve_hit(hit, shooter, data, origin.distance_to(hit["position"]), direction)
+		_resolve_hit(hit, shooter, data, origin.distance_to(hit["position"]), direction, visual_only)
 
 
 func _physics_process(delta: float) -> void:
@@ -56,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			if not hit.is_empty():
 				var distance: float = b["travelled"] + from.distance_to(hit["position"])
 				Game.vfx.tracer(from, hit["position"])
-				_resolve_hit(hit, shooter, data, distance, vel.normalized())
+				_resolve_hit(hit, shooter, data, distance, vel.normalized(), bool(b.get("visual", false)))
 				finished = true
 			else:
 				Game.vfx.tracer(from, to)
@@ -90,11 +96,13 @@ func _cast(from: Vector3, to: Vector3, shooter: Combatant) -> Dictionary:
 
 
 func _resolve_hit(hit: Dictionary, shooter: Combatant, data: WeaponData,
-		distance: float, direction: Vector3) -> void:
+		distance: float, direction: Vector3, visual_only: bool = false) -> void:
 	var collider: Object = hit["collider"]
 	var position: Vector3 = hit["position"]
 	var normal: Vector3 = hit["normal"]
-	if collider is Combatant:
+	if collider is Combatant and visual_only:
+		Game.vfx.impact("blood", position, -direction, false)
+	elif collider is Combatant:
 		var victim := collider as Combatant
 		var headshot := victim.is_head_hit(position)
 		var amount := data.damage_at(distance)

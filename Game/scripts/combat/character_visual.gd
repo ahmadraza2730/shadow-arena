@@ -153,6 +153,18 @@ func _dress() -> void:
 	var gear := StandardMaterial3D.new()
 	gear.albedo_color = Color(0.13, 0.14, 0.11)
 	gear.roughness = 0.9
+	var balaclava := StandardMaterial3D.new()
+	balaclava.albedo_color = Color(0.07, 0.075, 0.07)
+	balaclava.roughness = 1.0
+	var glove := StandardMaterial3D.new()
+	glove.albedo_color = Color(0.1, 0.1, 0.09)
+	glove.roughness = 0.75
+	var boot := StandardMaterial3D.new()
+	boot.albedo_color = Color(0.2, 0.15, 0.1)
+	boot.roughness = 0.65
+	var pouch := StandardMaterial3D.new()
+	pouch.albedo_color = Color(0.3, 0.29, 0.21)
+	pouch.roughness = 0.95
 	var lens := StandardMaterial3D.new()
 	lens.albedo_color = Color(0.03, 0.03, 0.04)
 	lens.roughness = 0.15
@@ -167,14 +179,39 @@ func _dress() -> void:
 	# Gear positions are given in the model's rest pose (metres, model
 	# faces +Z) and converted into each bone's local space.
 	var helmet := SphereMesh.new()
-	helmet.radius = 0.135
-	helmet.height = 0.22
-	helmet.radial_segments = 16
-	helmet.rings = 8
-	_gear("DEF-head", helmet, Vector3(0, 1.765, -0.005), _team_material)
-	_gear("DEF-head", _box_mesh(Vector3(0.17, 0.05, 0.03)), Vector3(0, 1.7, 0.118), lens)      # goggles
-	_gear("DEF-spine.003", _box_mesh(Vector3(0.36, 0.33, 0.25)), Vector3(0, 1.3, 0.01), gear)   # plate carrier
+	helmet.radius = 0.138
+	helmet.height = 0.2
+	helmet.radial_segments = 18
+	helmet.rings = 9
+	helmet.is_hemisphere = true
+	_gear("DEF-head", helmet, Vector3(0, 1.735, -0.005), _team_material)
+	# Balaclava: a fabric hood over the whole head, like a real operator.
+	var hood := SphereMesh.new()
+	hood.radius = 0.112
+	hood.height = 0.25
+	hood.radial_segments = 16
+	hood.rings = 10
+	_gear("DEF-head", hood, Vector3(0, 1.665, 0.004), balaclava)
+	_gear("DEF-head", _box_mesh(Vector3(0.17, 0.05, 0.04)), Vector3(0, 1.69, 0.105), lens)      # goggles
+	_gear("DEF-head", _box_mesh(Vector3(0.2, 0.025, 0.025)), Vector3(0, 1.69, 0.085), gear)    # goggle strap
+	_gear("DEF-head", _box_mesh(Vector3(0.05, 0.05, 0.05)), Vector3(0.12, 1.66, 0.0), gear)    # headset cup
+	_gear("DEF-spine.003", _box_mesh(Vector3(0.33, 0.31, 0.23)), Vector3(0, 1.3, 0.01), gear)   # plate carrier
 	_gear("DEF-spine.003", _box_mesh(Vector3(0.26, 0.34, 0.12)), Vector3(0, 1.3, -0.17), gear)  # backpack
+	_gear("DEF-spine.003", _box_mesh(Vector3(0.08, 0.3, 0.09)), Vector3(-0.08, 1.32, -0.26), pouch)  # hydration
+	for x: float in [-0.11, 0.0, 0.11]:
+		_gear("DEF-spine.002", _box_mesh(Vector3(0.09, 0.13, 0.07)), Vector3(x, 1.17, 0.15), pouch)  # magazine pouches
+	_gear("DEF-spine.002", _box_mesh(Vector3(0.16, 0.08, 0.06)), Vector3(0, 1.06, 0.14), gear)   # admin pouch
+	_gear("DEF-hips", _box_mesh(Vector3(0.38, 0.07, 0.25)), Vector3(0, 0.99, 0.0), gear)          # belt
+	_gear("DEF-hips", _box_mesh(Vector3(0.07, 0.1, 0.06)), Vector3(0.2, 0.95, 0.03), pouch)       # belt pouch
+	_gear("DEF-thigh.R", _box_mesh(Vector3(0.08, 0.17, 0.12)), Vector3(-0.17, 0.8, 0.0), gear)    # holster
+	# Gloves, boots and knee pads sit on the limb bones, placed from the rest pose.
+	for side: String in ["L", "R"]:
+		var x := 1.0 if side == "L" else -1.0
+		# The rest pose is a T-pose, so hands point along X.
+		_gear_on_bone("DEF-hand." + side, _box_mesh(Vector3(0.11, 0.05, 0.09)), Vector3(x * 0.045, 0.0, 0.0), glove)
+		_gear_on_bone("DEF-foot." + side, _box_mesh(Vector3(0.1, 0.1, 0.24)), Vector3(0, -0.05, 0.07), boot)
+		_gear_on_bone("DEF-shin." + side, _box_mesh(Vector3(0.1, 0.09, 0.05)), Vector3(0, 0.0, 0.065), gear)  # knee pad
+
 	# Team-colour armbands follow the upper arms (bone space: Y runs along the bone).
 	for side: String in ["L", "R"]:
 		var band := _attach("DEF-upper_arm." + side)
@@ -190,10 +227,21 @@ func _attach(bone: String) -> BoneAttachment3D:
 
 
 func _gear(bone: String, mesh: Mesh, rest_position: Vector3, material: Material) -> void:
+	if _skeleton.find_bone(bone) < 0:
+		return
 	var attachment := _attach(bone)
 	var bone_rest := _skeleton.get_bone_global_rest(_skeleton.find_bone(bone))
 	_add_mesh(attachment, mesh, bone_rest.affine_inverse() * Transform3D(Basis.IDENTITY, rest_position),
 			material)
+
+
+## Like _gear, but the position is an offset from the bone's own rest
+## position (handy for hands and feet, wherever the model puts them).
+func _gear_on_bone(bone: String, mesh: Mesh, offset: Vector3, material: Material) -> void:
+	var index := _skeleton.find_bone(bone)
+	if index < 0:
+		return
+	_gear(bone, mesh, _skeleton.get_bone_global_rest(index).origin + offset, material)
 
 
 func _box_mesh(size: Vector3) -> BoxMesh:

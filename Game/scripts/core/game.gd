@@ -42,6 +42,7 @@ const QUALITY: Array[Dictionary] = [
 ]
 
 const DIFFICULTY_NAMES: Array[String] = ["Easy", "Normal", "Hard"]
+const AIM_ASSIST_NAMES: Array[String] = ["Off", "Low", "High"]
 const TIME_NAMES: Array[String] = ["Dusty Afternoon", "Golden Dusk", "Overcast Rain", "Random"]
 
 var settings: Dictionary = {
@@ -56,6 +57,9 @@ var settings: Dictionary = {
 	"difficulty": 1,
 	"time_of_day": 0,
 	"third_person": false,
+	"aim_assist": 1,
+	"music_volume": 0.5,
+	"player_name": "",
 }
 
 ## Chosen weapons and their attachments.
@@ -65,6 +69,9 @@ var loadout: Dictionary = {
 	"secondary": "pistol_wasp",
 	"attachments": {},
 }
+
+## A message shown once on the main menu (e.g. "The host left the match").
+var menu_message := ""
 
 ## Set by the running match so any script can reach these systems.
 var match_node: Node = null
@@ -124,6 +131,16 @@ func apply_settings() -> void:
 	settings_changed.emit()
 
 
+## True for the OpenGL "Compatibility" renderer (web builds, old GPUs).
+func is_compatibility_renderer() -> bool:
+	return RenderingServer.get_current_rendering_method() == "gl_compatibility"
+
+
+## True when running in a web browser.
+func is_web() -> bool:
+	return OS.has_feature("web")
+
+
 ## Pushes the current quality preset into the renderer.
 func apply_quality() -> void:
 	var q := quality()
@@ -131,8 +148,10 @@ func apply_quality() -> void:
 	viewport.scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
 	viewport.scaling_3d_scale = float(q["scale"])
 	viewport.msaa_3d = Viewport.MSAA_2X if int(q["msaa"]) == 1 else Viewport.MSAA_DISABLED
-	viewport.screen_space_aa = (Viewport.SCREEN_SPACE_AA_FXAA if q["fxaa"]
-			else Viewport.SCREEN_SPACE_AA_DISABLED)
+	# FXAA does not exist in the Compatibility renderer (used on the web).
+	if not is_compatibility_renderer():
+		viewport.screen_space_aa = (Viewport.SCREEN_SPACE_AA_FXAA if q["fxaa"]
+				else Viewport.SCREEN_SPACE_AA_DISABLED)
 	RenderingServer.directional_shadow_atlas_set_size(int(q["shadow_size"]), true)
 
 
@@ -143,6 +162,8 @@ func start_match() -> void:
 
 
 func goto_menu() -> void:
+	if Net.is_online():
+		Net.leave_room()
 	get_tree().paused = false
 	match_node = null
 	bullets = null

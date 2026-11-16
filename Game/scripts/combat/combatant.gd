@@ -53,6 +53,12 @@ var is_aiming := false
 var ads_amount := 0.0
 var current_height := STAND_HEIGHT
 
+## Network identity: same number on every machine in an online match.
+var net_id := -1
+## Goes up by one on every respawn; lets the host ignore stale movement
+## packets from a joiner who has not seen their own respawn yet.
+var life := 0
+
 var weapons: Array[Weapon] = []
 var weapon_index := 0
 var visual: CharacterVisual
@@ -214,6 +220,7 @@ func respawn(spawn: Transform3D) -> void:
 		visual.set_weapon(weapons[0].data)
 		weapon_changed.emit(weapons[0])
 	visual.reset_pose()
+	life += 1
 	respawned.emit()
 
 

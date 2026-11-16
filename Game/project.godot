@@ -20,6 +20,8 @@ config/features=PackedStringArray("4.7", "Mobile")
 InputSetup="*res://scripts/core/input_setup.gd"
 Sfx="*res://scripts/core/sfx.gd"
 Game="*res://scripts/core/game.gd"
+Music="*res://scripts/core/music.gd"
+Net="*res://scripts/net/net.gd"
 
 [display]
 

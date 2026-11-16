@@ -13,6 +13,17 @@ const HIP_POSITION := Vector3(0.2, -0.19, -0.42)
 const THIRD_PERSON_DISTANCE := 2.8
 const THIRD_PERSON_ADS_DISTANCE := 1.3
 const SHOULDER_OFFSET := Vector3(0.55, 0.1, 0.0)
+## Aim assist per setting (0 Off, 1 Low, 2 High):
+##  cone      degrees around the crosshair where assist starts
+##  slow      how much mouse speed drops when the crosshair is on a target
+##  pull      degrees per second the view drifts onto a target while aiming/firing
+##  snap      fraction of the gap closed when you start aiming down sights
+const AIM_ASSIST := [
+	{},
+	{"cone": 5.0, "slow": 0.3, "pull": 5.0, "snap": 0.35},
+	{"cone": 8.0, "slow": 0.5, "pull": 11.0, "snap": 0.6},
+]
+const AIM_ASSIST_RANGE := 80.0
 
 var is_third_person := false
 ## False while paused, in menus or after the match ends.
@@ -34,6 +45,10 @@ var _bob_phase := 0.0
 var _sprint_fov := 0.0
 var _shadow_only := false
 var _dead_view := false
+var _assist_target: Combatant = null
+var _assist_angle := 0.0          # degrees from crosshair to the target (0 = on it)
+var _assist_scan := 0.0
+var _was_aiming := false
 
 
 func _ready() -> void:
@@ -68,6 +83,11 @@ func set_weapons(primary: WeaponData, secondary: WeaponData) -> void:
 		weapon.recoil_kick.connect(_on_recoil_kick)
 
 
+## Current look pitch in radians (sent to the host in online play).
+func aim_pitch() -> float:
+	return _pitch
+
+
 func camera() -> Camera3D:
 	return _camera
 
@@ -85,7 +105,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var motion := event as InputEventMouseMotion
 		# Lower sensitivity when zoomed in, in proportion to the zoom.
 		var sensitivity := BASE_SENSITIVITY * float(Game.settings["sensitivity"]) \
-				* (_camera.fov / float(Game.settings["fov"]))
+				* (_camera.fov / float(Game.settings["fov"])) * _assist_slowdown()
 		rotate_y(-motion.relative.x * sensitivity)
 		_pitch = clampf(_pitch - motion.relative.y * sensitivity, -PITCH_LIMIT, PITCH_LIMIT)
 		_head.rotation.x = _pitch
@@ -145,6 +165,7 @@ func _physics_process(delta: float) -> void:
 	weapon.tick(delta, trigger)
 
 	_apply_recoil(delta)
+	_update_aim_assist(delta, trigger)
 	_update_camera(delta)
 	_update_viewmodel(delta, input_vector)
 	visual.animate(delta, horizontal_speed(), current_height, _pitch, is_on_floor())
@@ -170,6 +191,88 @@ func get_muzzle_position() -> Vector3:
 	if _viewmodel.visible:
 		return _viewmodel.to_global(_viewmodel.muzzle_local)
 	return visual.muzzle_position()
+
+
+# ------------------------------------------------------------- aim assist
+func _assist_settings() -> Dictionary:
+	return AIM_ASSIST[clampi(int(Game.settings["aim_assist"]), 0, 2)]
+
+
+## Mouse speed multiplier: lower while the crosshair is over a target.
+func _assist_slowdown() -> float:
+	var cfg := _assist_settings()
+	if cfg.is_empty() or _assist_target == null:
+		return 1.0
+	var closeness := 1.0 - clampf(_assist_angle / float(cfg["cone"]), 0.0, 1.0)
+	return 1.0 - float(cfg["slow"]) * closeness
+
+
+## Finds the enemy nearest the crosshair and, while aiming or firing,
+## drifts the view onto it. A fresh press of aim snaps part of the way.
+func _update_aim_assist(delta: float, trigger: bool) -> void:
+	var cfg := _assist_settings()
+	var aiming := is_aiming and ads_amount > 0.1
+	var fresh_aim := is_aiming and not _was_aiming
+	_was_aiming = is_aiming
+	if cfg.is_empty():
+		_assist_target = null
+		return
+	# Re-pick the target ~10 times a second (it needs ray casts).
+	_assist_scan -= delta
+	if _assist_scan <= 0.0 or (_assist_target and not _assist_target.alive):
+		_assist_scan = 0.1
+		_assist_target = _find_assist_target(float(cfg["cone"]) * (1.5 if fresh_aim else 1.0))
+	if _assist_target == null:
+		return
+	var point := _assist_target.chest_position()
+	var to_target := (point - _camera.global_position).normalized()
+	var forward := -_camera.global_transform.basis.z
+	_assist_angle = rad_to_deg(forward.angle_to(to_target))
+	if _assist_angle > float(cfg["cone"]) * 1.6:
+		_assist_target = null
+		return
+	if not (aiming or trigger or fresh_aim):
+		return
+	# How far to turn this frame, as a fraction of the remaining gap.
+	var step := 0.0
+	if fresh_aim:
+		step = float(cfg["snap"])
+	elif _assist_angle > 0.05:
+		step = clampf(float(cfg["pull"]) * delta / _assist_angle, 0.0, 1.0)
+	if step <= 0.0:
+		return
+	var target_yaw := atan2(-to_target.x, -to_target.z)
+	var yaw_gap := wrapf(target_yaw - rotation.y, -PI, PI)
+	rotate_y(yaw_gap * step)
+	var target_pitch := asin(clampf(to_target.y, -1.0, 1.0))
+	_pitch = clampf(lerpf(_pitch, target_pitch, step), -PITCH_LIMIT, PITCH_LIMIT)
+	_head.rotation.x = _pitch
+
+
+func _find_assist_target(cone_degrees: float) -> Combatant:
+	if Game.match_node == null:
+		return null
+	var origin := _camera.global_position
+	var forward := -_camera.global_transform.basis.z
+	var best: Combatant = null
+	var best_angle := cone_degrees
+	var space := get_world_3d().direct_space_state
+	for enemy: Combatant in Game.match_node.enemies_of(team):
+		if not enemy.alive:
+			continue
+		var offset := enemy.chest_position() - origin
+		var distance := offset.length()
+		if distance > AIM_ASSIST_RANGE or distance < 0.5:
+			continue
+		var angle := rad_to_deg(forward.angle_to(offset / distance))
+		if angle >= best_angle:
+			continue
+		var query := PhysicsRayQueryParameters3D.create(origin, enemy.chest_position(), Game.LAYER_WORLD)
+		if not space.intersect_ray(query).is_empty():
+			continue
+		best = enemy
+		best_angle = angle
+	return best
 
 
 func _on_recoil_kick(kick: Vector2) -> void:
@@ -276,6 +379,7 @@ func _on_weapon_changed(weapon: Weapon) -> void:
 
 func _on_died(_victim: Combatant, _killer: Combatant, _weapon: WeaponData, _headshot: bool) -> void:
 	_dead_view = true
+	_assist_target = null
 	_recoil_pending = Vector2.ZERO
 	_recoil_climb = 0.0
 
