@@ -21,7 +21,7 @@ const MAX_REWIND := 0.6
 const ROSTER_RESEND := 2.0
 const HELLO_INTERVAL := 1.0
 ## Joiner: give up if the host has not let us in after this much game time.
-const JOIN_TIMEOUT := 20.0
+const JOIN_TIMEOUT := 30.0
 
 var match_ref: TdmMatch
 ## A new id per match, so joiners notice when the host restarts.
