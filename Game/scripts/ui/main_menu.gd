@@ -49,17 +49,39 @@ func _ready() -> void:
 	left.add_child(UiKit.button("LOADOUT", _show_loadout))
 	left.add_child(UiKit.button("SETTINGS", _show_settings))
 	left.add_child(UiKit.button("CONTROLS", _show_controls))
-	left.add_child(UiKit.button("QUIT", get_tree().quit))
+	if not Game.is_web():
+		left.add_child(UiKit.button("QUIT", get_tree().quit))
 
 	# Right column: whichever panel is open.
 	_content = UiKit.panel()
 	_content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_content.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	columns.add_child(_content)
+	# A link like ...?join=K7QM opens straight into that room.
+	var join_code := NetConfig.url_param("join")
+	if join_code != "" and not _auto_joined:
+		_auto_joined = true
+		_join_from_link(join_code)
+		return
 	if Game.menu_message != "":
 		_show_online()
 	else:
 		_show_loadout()
+
+
+static var _auto_joined := false
+
+
+func _join_from_link(code: String) -> void:
+	Net.open_lobby()
+	while not Net.is_connected_to_relay():
+		await get_tree().create_timer(0.2).timeout
+		if Net.status.begins_with("Offline:"):
+			Game.menu_message = "Could not connect: " + Net.status
+			_show_online()
+			return
+	Net.join_room(code)
+	Game.start_match()
 
 
 func _play_offline() -> void:

@@ -18,3 +18,5 @@
 *.ogg binary
 *.jpg binary
 *.png binary
+*.wasm binary
+*.pck binary

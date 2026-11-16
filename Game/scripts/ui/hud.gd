@@ -31,6 +31,7 @@ var _pause_content: VBoxContainer
 var _end_panel: PanelContainer
 
 var _net_label: Label
+var _click_label: Label
 var _menu_open := false
 var _hit_marker := 0.0
 var _hit_color := Color.WHITE
@@ -184,6 +185,14 @@ func _build() -> void:
 	_sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	center.add_child(_sub_label)
 
+	# "Click to play": browsers only let a page capture the mouse after a click.
+	_click_label = UiKit.label("CLICK TO PLAY", 30, UiKit.ACCENT)
+	_click_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	_click_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_click_label.position.y += 70
+	_click_label.visible = false
+	root.add_child(_click_label)
+
 	_build_scoreboard(root)
 	_build_pause(root)
 
@@ -310,6 +319,9 @@ func _process(delta: float) -> void:
 
 	_hit_marker = maxf(_hit_marker - delta, 0.0)
 	_update_center(delta)
+	_click_label.visible = (not _menu_open and _player.alive
+			and _match.state in [TdmMatch.MatchState.PLAYING, TdmMatch.MatchState.COUNTDOWN]
+			and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and _player.require_mouse_capture)
 
 	if Net.is_online():
 		var text := "ROOM %s   %d/%d players" % [Net.room_code, Net.human_count(), Net.MAX_HUMANS]

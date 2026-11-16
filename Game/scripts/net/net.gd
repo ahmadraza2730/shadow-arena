@@ -87,7 +87,8 @@ func is_connected_to_relay() -> bool:
 
 
 func human_count() -> int:
-	return peers.size() + 1
+	# A joiner's peer list holds the other joiners but not the host.
+	return peers.size() + (2 if role == Role.CLIENT else 1)
 
 
 ## Snapshots / uplink packets per second. Drops a little with 4 humans so
