@@ -14,3 +14,10 @@ If weapons are missing in the build: Project > Export > Resources tab >
 
 Before publishing: all weapon names are already fictional; keep it that
 way, and do not ship any ripped game assets.
+
+
+## Web build (Vercel)
+1. Export: `godot --headless --path Game --export-release "Web" ../web/index.html`
+   (needs the web export templates, part of the same template download).
+2. Commit and push the `web/` folder. The Vercel project `shadow-arena` (root directory `web`)
+   redeploys automatically on every push to `main`.

@@ -49,9 +49,41 @@ var _uplink_topic := ""
 var _host_uplinks: Dictionary = {}      # peer_id -> topic (host side)
 
 
+## Browser tabs in the background stop running the game loop, which would
+## stop our 25-second heartbeat and get us dropped by the relay. This
+## wraps the page's WebSocket so a plain JavaScript timer (which keeps
+## running in background tabs) sends the heartbeat instead.
+const WEB_KEEPALIVE_JS := """
+(function () {
+  if (window.__saKeepAlive) return;
+  window.__saKeepAlive = true;
+  var Native = window.WebSocket;
+  function Patched(url, protocols) {
+    var ws = protocols === undefined ? new Native(url) : new Native(url, protocols);
+    if (String(url).indexOf('/websocket') >= 0) {
+      var ref = 900000;
+      var timer = setInterval(function () {
+        if (ws.readyState === 1) {
+          ws.send(JSON.stringify({topic: 'phoenix', event: 'heartbeat', payload: {}, ref: String(ref++)}));
+        } else if (ws.readyState > 1) {
+          clearInterval(timer);
+        }
+      }, 20000);
+    }
+    return ws;
+  }
+  Patched.prototype = Native.prototype;
+  Patched.CONNECTING = 0; Patched.OPEN = 1; Patched.CLOSING = 2; Patched.CLOSED = 3;
+  window.WebSocket = Patched;
+})();
+"""
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	randomize()
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval(WEB_KEEPALIVE_JS, true)
 	my_id = "%08x" % (randi() & 0x7fffffff)
 	_client = RealtimeClient.new()
 	add_child(_client)

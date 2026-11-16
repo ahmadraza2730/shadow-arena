@@ -1,9 +1,12 @@
 # Shadow Arena - game guide
 
+## Play in the browser
+https://shadow-arena-self.vercel.app (online play: see ONLINE.md)
+
 ## Run it
 1. Open `E:\Godot\Godot_v4.7.2-stable_win64.exe`.
 2. Import `E:\ShadowArena\Game\project.godot` (first time only), then press F5.
-3. Menu: pick a loadout, then PLAY.
+3. Menu: pick a loadout, then PLAY VS BOTS or PLAY ONLINE.
 
 ## Controls
 | Action | Key |
@@ -15,6 +18,11 @@
 | Switch weapon | 1, 2, Q or mouse wheel |
 | First / third person | V |
 | Scoreboard / pause | Tab (hold) / Esc |
+
+## Settings worth knowing
+- **Aim assist** (Off / Low / High): slows the mouse over enemies, gently pulls onto
+  them while aiming or firing, and snaps part of the way when you start aiming down sights.
+- **Music volume** is separate from the master volume.
 
 ## Rules
 - 4 v 4: you + 3 bots (team SHAHEEN, blue) against 4 bots (MARKHOR, orange).
@@ -37,6 +45,8 @@
 | `scripts/game_mode/arena_env.gd` | Sky, sun, fog, post-processing, weather presets. |
 | `scripts/combat/vfx.gd` | Impacts, bullet holes, tracers, muzzle flash, casings (all pooled). |
 | `scripts/core/game.gd` | Settings, loadout, quality presets, scene switching (autoload). |
+| `scripts/net/*.gd` | Online play: relay client, rooms, host/joiner sync, network soldiers (see ONLINE.md). |
+| `scripts/core/music.gd` | Menu and match music with cross-fades (autoload). |
 | `scripts/core/sfx.gd` | Sounds: recordings from `assets/audio/` plus synthesised UI/reload sounds (autoload). |
 | `scripts/combat/character_visual.gd`, `aim_modifier.gd` | The animated soldier and its aim pose. |
 | `scripts/weapons/weapon_visual.gd` | Loads each gun model and adds scope / muzzle attachments. |

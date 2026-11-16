@@ -19,5 +19,6 @@ GitHub mirrors, which state the licences above:
 - github.com/J-Ponzo/gltf-universal-animation-library (Quaternius library)
 
 Everything else (container, wood, metal and camouflage textures, clouds,
-signs, truck art, UI sounds, the map and all code) is generated or
-written for this project.
+signs, truck art, UI sounds, both music tracks, the map and all code) is
+generated or written for this project. The music ("Dust Over the Godowns",
+"Lalkaar") is composed and rendered by `MapSource/gen_music.py`.

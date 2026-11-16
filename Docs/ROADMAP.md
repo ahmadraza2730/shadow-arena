@@ -22,7 +22,8 @@ your eyes/hands on a real PC, [ ] not started.
 - [x] 12. HUD, main menu, pause menu, settings, end screen
 - [~] 13. Low/Medium/High presets are in. FPS has not been measured on the
         target laptop - see GRAPHICS.md for the tuning plan.
-- [ ] 14. Online multiplayer (deliberately not started: offline must be
-        play-tested and approved first)
-- [~] 15. Export preset is ready; the build itself must be made on your PC
-        (PACKAGING.md).
+- [x] 14. Online multiplayer over Supabase Realtime: rooms, room list, host-authoritative
+        damage, lag compensation, interpolation. Tested with a local relay; real-internet
+        test done in the browser (room list across two browser instances).
+- [x] 15. Windows .exe (E:\ShadowArena\Builds) and web build on Vercel
+        (https://shadow-arena-self.vercel.app). Extras: aim assist, original music.

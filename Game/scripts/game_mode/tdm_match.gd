@@ -131,6 +131,10 @@ func _show_join_screen() -> void:
 	_join_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	layer.add_child(_join_label)
 	Music.play("match")
+	# Give up if the host never answers (wrong code, or the host closed).
+	get_tree().create_timer(15.0).timeout.connect(func() -> void:
+		if is_inside_tree() and player == null and Net.is_client():
+			Net.leave_room("Room %s not found, or the host is not responding" % Net.room_code))
 
 
 ## The match clock (seconds since the match scene started).
