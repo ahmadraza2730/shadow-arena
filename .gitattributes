@@ -18,7 +18,3 @@
 *.ogg binary
 *.jpg binary
 *.png binary
-# Textures (small generated .jpg/.png files are stored in Git directly)
-# Models / animation
-# Audio / video
-# Baked lightmaps, fonts, archives

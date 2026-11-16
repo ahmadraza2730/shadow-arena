@@ -19,7 +19,6 @@
 ## Commit after any change (PowerShell)
 ```
 cd E:\ShadowArena
-git lfs install
 git add .
 git commit -m "Describe the change"
 ```
