@@ -59,6 +59,22 @@ func _build() -> void:
 	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(root)
 
+	# Permanent soft dark corners: a cheap "camera lens" look.
+	var lens_gradient := Gradient.new()
+	lens_gradient.offsets = PackedFloat32Array([0.0, 0.6, 1.0])
+	lens_gradient.colors = PackedColorArray([Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.32)])
+	var lens_texture := GradientTexture2D.new()
+	lens_texture.gradient = lens_gradient
+	lens_texture.fill = GradientTexture2D.FILL_RADIAL
+	lens_texture.fill_from = Vector2(0.5, 0.5)
+	lens_texture.fill_to = Vector2(1.05, 0.5)
+	var lens := TextureRect.new()
+	lens.texture = lens_texture
+	lens.stretch_mode = TextureRect.STRETCH_SCALE
+	lens.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	lens.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(lens)
+
 	# Red edge glow when hurt (a radial gradient, transparent in the middle).
 	var gradient := Gradient.new()
 	gradient.offsets = PackedFloat32Array([0.0, 0.55, 1.0])

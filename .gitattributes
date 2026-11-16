@@ -12,10 +12,7 @@
 *.md        text eol=lf
 
 # ---- Git LFS: big binary files (run "git lfs install" once) ----
-# Textures
-*.png  filter=lfs diff=lfs merge=lfs -text
-*.jpg  filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
+# Textures (small generated .jpg/.png files are stored in Git directly)
 *.tga  filter=lfs diff=lfs merge=lfs -text
 *.exr  filter=lfs diff=lfs merge=lfs -text
 *.hdr  filter=lfs diff=lfs merge=lfs -text

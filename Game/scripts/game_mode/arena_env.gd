@@ -13,17 +13,17 @@ const PRESETS: Array[Dictionary] = [
 		"sun_pitch": -52.0, "sun_yaw": 35.0, "sun_color": Color(1.0, 0.95, 0.84), "sun_energy": 1.0,
 		"sky_top": Color(0.3, 0.5, 0.82), "sky_horizon": Color(0.82, 0.76, 0.64),
 		"ambient": 0.42, "ambient_color": Color(0.7, 0.68, 0.66), "fog_color": Color(0.78, 0.72, 0.62), "fog_density": 0.0022,
-		"saturation": 1.08, "contrast": 1.06, "rain": false},
+		"saturation": 1.1, "contrast": 1.1, "rain": false, "clouds": Color(1.0, 0.98, 0.95, 0.9)},
 	{"name": "Golden Dusk",
 		"sun_pitch": -11.0, "sun_yaw": 80.0, "sun_color": Color(1.0, 0.6, 0.32), "sun_energy": 0.95,
 		"sky_top": Color(0.22, 0.24, 0.5), "sky_horizon": Color(0.95, 0.55, 0.3),
 		"ambient": 0.38, "ambient_color": Color(0.62, 0.5, 0.5), "fog_color": Color(0.8, 0.5, 0.34), "fog_density": 0.004,
-		"saturation": 1.15, "contrast": 1.1, "rain": false},
+		"saturation": 1.15, "contrast": 1.12, "rain": false, "clouds": Color(1.0, 0.7, 0.5, 1.0)},
 	{"name": "Overcast Rain",
 		"sun_pitch": -65.0, "sun_yaw": 10.0, "sun_color": Color(0.75, 0.8, 0.88), "sun_energy": 0.55,
 		"sky_top": Color(0.4, 0.43, 0.47), "sky_horizon": Color(0.6, 0.62, 0.64),
 		"ambient": 0.6, "ambient_color": Color(0.62, 0.66, 0.7), "fog_color": Color(0.52, 0.55, 0.58), "fog_density": 0.008,
-		"saturation": 0.85, "contrast": 1.0, "rain": true},
+		"saturation": 0.85, "contrast": 1.04, "rain": true, "clouds": Color(0.5, 0.52, 0.55, 1.0)},
 ]
 
 var sun: DirectionalLight3D
@@ -41,6 +41,9 @@ func build(preset_index: int) -> void:
 	sky_material.sky_horizon_color = preset["sky_horizon"]
 	sky_material.ground_horizon_color = preset["sky_horizon"]
 	sky_material.ground_bottom_color = (preset["sky_horizon"] as Color).darkened(0.5)
+	# A generated cloud layer wrapped around the sky dome.
+	sky_material.sky_cover = load("res://assets/textures/clouds.png")
+	sky_material.sky_cover_modulate = preset["clouds"]
 	var sky := Sky.new()
 	sky.sky_material = sky_material
 

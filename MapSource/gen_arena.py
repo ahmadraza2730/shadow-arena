@@ -30,20 +30,61 @@ KINDS = {
     "metal_red": ("metal_red", "metal"),
     "metal_green": ("metal_green", "metal"),
     "wood": ("wood", "wood"),
+    "barrel_red": ("barrel_red", "metal"),
+    "barrel_blue": ("barrel_blue", "metal"),
+    "rubber": ("rubber", "wood"),
+    "pole": ("pole", "wood"),
 }
 
-boxes = []      # dicts: name kind c(x,y,z centre) s(size) cover
+boxes = []      # dicts: name kind c(x,y,z centre) s(size) cover visible
 ramps = []      # dicts: name a b width
+cyls = []       # upright cylinders with collision: name kind c r h cover
+decor = []      # visual-only pieces (no collision): see decor_* helpers
 spawns = [[], []]        # per team: (x, y, z, yaw_degrees)
 sniper_spots = [[], []]  # per team: (x, y, z)
 hotspots = []
 
 
-def box(name, kind, x, y0, z, sx, sy, sz, cover=False, mirror=True):
-    """A box with its base at height y0, centred on (x, z)."""
-    boxes.append(dict(name=name, kind=kind, c=(x, y0 + sy / 2.0, z), s=(sx, sy, sz), cover=cover))
+def box(name, kind, x, y0, z, sx, sy, sz, cover=False, mirror=True, visible=True):
+    """A box with its base at height y0, centred on (x, z).
+    visible=False makes a collision-only box (decor draws the shape)."""
+    boxes.append(dict(name=name, kind=kind, c=(x, y0 + sy / 2.0, z), s=(sx, sy, sz), cover=cover, visible=visible))
     if mirror:
-        boxes.append(dict(name=name + "M", kind=kind, c=(-x, y0 + sy / 2.0, -z), s=(sx, sy, sz), cover=cover))
+        boxes.append(dict(name=name + "M", kind=kind, c=(-x, y0 + sy / 2.0, -z), s=(sx, sy, sz), cover=cover, visible=visible))
+
+
+def cyl(name, kind, x, y0, z, radius, height, cover=False, mirror=True):
+    """An upright cylinder with collision (barrels, tyres, poles)."""
+    cyls.append(dict(name=name, kind=kind, c=(x, y0 + height / 2.0, z), r=radius, h=height, cover=cover))
+    if mirror:
+        cyls.append(dict(name=name + "M", kind=kind, c=(-x, y0 + height / 2.0, -z), r=radius, h=height, cover=cover))
+
+
+def _yaw_rows(yaw_deg):
+    c, s_ = math.cos(math.radians(yaw_deg)), math.sin(math.radians(yaw_deg))
+    return (c, 0, s_, 0, 1, 0, -s_, 0, c)
+
+
+def decor_box(name, material, x, y, z, sx, sy, sz, yaw=0.0, mirror=True):
+    """Visual-only box centred on (x, y, z)."""
+    decor.append(dict(name=name, mesh="box", material=material, rows=_yaw_rows(yaw), c=(x, y, z), s=(sx, sy, sz)))
+    if mirror:
+        decor.append(dict(name=name + "M", mesh="box", material=material, rows=_yaw_rows(yaw + 180), c=(-x, y, -z), s=(sx, sy, sz)))
+
+
+def decor_cyl(name, material, x, y, z, radius, length, axis="y", mirror=True):
+    """Visual-only cylinder whose length runs along the given axis."""
+    rows = {"y": (1, 0, 0, 0, 1, 0, 0, 0, 1), "x": (0, 1, 0, -1, 0, 0, 0, 0, 1), "z": (1, 0, 0, 0, 0, -1, 0, 1, 0)}[axis]
+    decor.append(dict(name=name, mesh="cyl", material=material, rows=rows, c=(x, y, z), s=(radius, length, 0)))
+    if mirror:
+        decor.append(dict(name=name + "M", mesh="cyl", material=material, rows=rows, c=(-x, y, -z), s=(radius, length, 0)))
+
+
+def decor_quad(name, material, x, y, z, w, h, yaw, mirror=True):
+    """A flat panel (sign). yaw 0 faces +Z (south), 90 faces +X (east)."""
+    decor.append(dict(name=name, mesh="quad", material=material, rows=_yaw_rows(yaw), c=(x, y, z), s=(w, h, 0)))
+    if mirror:
+        decor.append(dict(name=name + "M", mesh="quad", material=material, rows=_yaw_rows(yaw + 180), c=(-x, y, -z), s=(w, h, 0)))
 
 
 def wall_x(name, kind, x, z0, z1, h, t=0.4, y0=0.0, mirror=True):
@@ -125,7 +166,7 @@ box("YardLowWallB", "concrete", 7, 0, 8, 0.5, 1.1, 4, cover=True)
 box("YardBlock", "concrete", 5, 0, 18, 2, 1.4, 1, cover=True)
 box("YardCrateF", "wood", -4.6, 0, 18, 1.5, 1.5, 1.5, cover=True)
 box("YardCrateG", "wood", 4.6, 0, 12.5, 1.5, 1.2, 1.5, cover=True)
-box("Truck", "metal_green", 7, 0, 1, 2.6, 2.8, 7, cover=True)
+box("Truck", "metal_green", 7, 0, 1, 2.6, 2.8, 7, cover=True, visible=False)
 
 # ---- Walls between the yard and the two flanks ----
 wall_x("DividerWS", "brick", -20, 14, 34, 3.5, t=0.5)
@@ -210,6 +251,71 @@ box("NwLowWallB", "concrete", -33, 0, -36, 4, 1.1, 0.5, cover=True)
 box("FarCrateA", "wood", -57, 0, 6, 1.5, 1.5, 1.5, cover=True)
 box("FarCrateB", "wood", -58, 0, -8, 1.5, 1.5, 1.5, cover=True)
 
+# ================================================= SET DRESSING
+# ---- A decorated cargo truck (drawn here; its collision is the "Truck" box) ----
+TX, TZ = 7.0, 1.0
+decor_box("TruckChassis", "rubber", TX, 0.72, TZ, 2.2, 0.3, 6.8)
+decor_box("TruckCargo", "truck_green", TX, 1.9, TZ + 1.0, 2.5, 2.0, 4.7)
+decor_box("TruckCab", "barrel_red", TX, 1.72, TZ - 2.55, 2.3, 1.7, 1.7)
+decor_box("TruckCrown", "barrel_red", TX, 3.0, TZ - 1.75, 2.5, 0.9, 0.12)
+decor_quad("TruckCrownArt", "truck_art", TX, 3.0, TZ - 1.82, 2.4, 0.8, 180)
+decor_quad("TruckArtE", "truck_art", TX + 1.26, 1.9, TZ + 1.0, 4.5, 1.8, 90)
+decor_quad("TruckArtW", "truck_art", TX - 1.26, 1.9, TZ + 1.0, 4.5, 1.8, -90)
+decor_quad("TruckWindshield", "glass", TX, 2.05, TZ - 3.41, 2.0, 0.75, 180)
+for i, wz in enumerate((-2.5, 1.7, 2.9)):
+    for side in (-1, 1):
+        decor_cyl("TruckWheel%d%s" % (i, "L" if side < 0 else "R"), "rubber", TX + side * 1.12, 0.5, TZ + wz, 0.5, 0.36, axis="x")
+
+# ---- Door lintels (doors become 2.5 m openings instead of full-height gaps) ----
+box("WhLintelS", "plaster", -40, 2.5, 16, 2.4, 0.7, 0.4)
+box("WhLintelN", "plaster", -46.8, 2.5, -16, 2.4, 0.7, 0.4)
+box("WhLintelE", "plaster", -28, 2.5, 0, 0.4, 0.7, 2.4)
+box("WhLintelW", "plaster", -52, 2.5, 0, 0.4, 0.7, 2.4)
+box("WhLintelInA", "plaster", -41.8, 2.5, 5, 2.4, 0.7, 0.4)
+box("WhLintelInB", "plaster", -40, 2.5, -5.8, 0.4, 0.7, 2.4)
+box("ShedLintelN", "brick", -51, 2.4, 24, 2.4, 0.6, 0.4)
+box("ShedLintelE", "brick", -46, 2.4, 29, 0.4, 0.6, 2.4)
+
+# ---- Signs ----
+decor_quad("SignGodown", "sign_godown", -27.78, 2.15, 4.1, 3.2, 1.6, 90)
+decor_quad("SignWorkshop", "sign_workshop", -53.9, 2.0, 23.78, 2.6, 1.3, 180)
+decor_quad("SignDangerA", "sign_danger", -19.72, 2.1, 24, 1.8, 0.9, 90)
+decor_quad("SignDangerB", "sign_danger", 10, 2.4, 41.68, 1.8, 0.9, 180)
+
+# ---- Pipes, awnings and lamps on the buildings ----
+decor_cyl("WhPipeW", "pipe", -52.32, 2.75, 5.5, 0.08, 20, axis="z")
+decor_cyl("WhDrainA", "pipe", -27.72, 1.6, 15.6, 0.07, 3.2)
+decor_cyl("WhDrainB", "pipe", -27.72, 1.6, -15.6, 0.07, 3.2)
+decor_cyl("WhDrainC", "pipe", -40, 1.6, 16.28, 0.07, 3.2)
+decor_box("WhAwningS", "awning", -40, 2.75, 16.9, 3.2, 0.06, 1.5)
+decor_box("WhAwningE", "awning", -27.1, 2.75, 0, 1.5, 0.06, 3.2)
+decor_box("ShedAwning", "awning", -45.2, 2.6, 29, 1.4, 0.06, 3.0)
+decor_box("LampWhS", "lamp", -40, 2.95, 16.3, 0.4, 0.14, 0.2)
+decor_box("LampWhE", "lamp", -27.7, 2.95, 0, 0.2, 0.14, 0.4)
+decor_box("LampShed", "lamp", -45.7, 2.75, 29, 0.2, 0.14, 0.4)
+decor_box("LampNest", "lamp", 0, 4.3, 41.6, 0.5, 0.14, 0.2)
+
+# ---- Power poles and wires along the yard walls ----
+for i, pz in enumerate((34.7, 13.3, 5.6)):
+    cyl("PoleW%d" % i, "pole", -20, 0, pz, 0.13, 7.0)
+    decor_box("PoleArmW%d" % i, "pole", -20, 6.6, pz, 1.3, 0.1, 0.1)
+for a, b in ((34.7, 13.3), (13.3, 5.6), (5.6, -5.6)):
+    for off in (-0.55, 0.55):
+        decor_box("WireW%d%d" % (int(a), int(off * 10 + 10)), "rubber", -20 + off, 6.62, (a + b) / 2, 0.025, 0.025, abs(a - b))
+
+# ---- Barrels, pallets and tyres: small cover that makes the yard feel used ----
+BARRELS = [(17.2, 22.0), (17.9, 22.5), (17.3, 23.0), (-17.6, 8.0), (-17.5, 8.8), (-23.0, 30.0),
+           (-22.3, 30.5), (-44.0, -22.0), (-44.7, -22.5), (-30.0, 39.5), (-58.4, 30.0), (-58.3, 30.8),
+           (-50.6, 14.4), (-30.0, -14.2), (-12.0, 33.0), (3.6, 33.2)]
+for i, (bx, bz) in enumerate(BARRELS):
+    cyl("Barrel%d" % i, "barrel_red" if i % 3 else "barrel_blue", bx, 0, bz, 0.29, 0.88, cover=(i % 2 == 0))
+for i, (px, pz, n) in enumerate([(12.0, 34.0, 3), (-38.0, -21.5, 2), (-25.0, 14.5, 3), (-55.0, 38.0, 2), (-35.0, -8.0, 2)]):
+    for k in range(n):
+        box("Pallet%d_%d" % (i, k), "wood", px, k * 0.16, pz, 1.2, 0.14, 1.0)
+for i, (tx, tz) in enumerate([(10.4, 4.0), (-47.6, 21.6), (-21.5, -16.0)]):
+    for k in range(3):
+        cyl("Tyre%d_%d" % (i, k), "rubber", tx, k * 0.24, tz, 0.42, 0.24)
+
 # ---- Objectives the bots roam between ----
 hotspot(-12, 0, 6)
 hotspot(9, 0, 20)
@@ -243,6 +349,9 @@ def blocked(x, z, margin=0.45, y_low=0.1, y_high=1.7):
         w = r["width"] / 2 + margin
         if min(ax, bx) - w < x < max(ax, bx) + w and min(az, bz) - w < z < max(az, bz) + w:
             return True
+    for c in cyls:
+        if math.hypot(x - c["c"][0], z - c["c"][2]) < c["r"] + margin:
+            return True
     return False
 
 
@@ -257,6 +366,13 @@ for b in boxes:
     for px, pz in ((x0 - 0.9, cz), (x1 + 0.9, cz), (cx, z0 - 0.9), (cx, z1 + 0.9)):
         if abs(px) < 58 and abs(pz) < 58 and not blocked(px, pz):
             cover_points.append((round(px, 2), 0.0, round(pz, 2)))
+
+for c in cyls:                       # barrels give two cover points each
+    if c["cover"]:
+        cx, cz = c["c"][0], c["c"][2]
+        for px, pz in ((cx - 0.9, cz), (cx + 0.9, cz), (cx, cz - 0.9), (cx, cz + 0.9)):
+            if abs(px) < 58 and abs(pz) < 58 and not blocked(px, pz):
+                cover_points.append((round(px, 2), 0.0, round(pz, 2)))
 
 for team in (0, 1):
     for (x, y, z, yaw) in spawns[team]:
@@ -297,24 +413,49 @@ def ramp_transform(r):
 
 
 def write_scene():
-    sizes = {}
-    def size_id(s):
-        key = tuple(round(v, 4) for v in s)
-        if key not in sizes:
-            sizes[key] = len(sizes)
-        return sizes[key]
+    subs = []            # sub_resource text blocks
+    sub_ids = {}
+    def sub(kind, key, body):
+        """Returns the id of a shared mesh/shape, creating it on first use."""
+        k = (kind,) + tuple(round(v, 4) for v in key)
+        if k not in sub_ids:
+            sub_ids[k] = "%s_%d" % (kind, len(sub_ids))
+            subs.append('[sub_resource type="%s" id="%s"]\n%s\n' % (body[0], sub_ids[k], body[1]))
+        return sub_ids[k]
 
+    def box_mesh(size):
+        vec = "Vector3(%s, %s, %s)" % tuple(fmt(v) for v in size)
+        return sub("boxmesh", size, ("BoxMesh", "size = " + vec))
+
+    def box_shape(size):
+        vec = "Vector3(%s, %s, %s)" % tuple(fmt(v) for v in size)
+        return sub("boxshape", size, ("BoxShape3D", "size = " + vec))
+
+    def cyl_mesh(radius, height):
+        return sub("cylmesh", (radius, height), ("CylinderMesh",
+                   "top_radius = %s\nbottom_radius = %s\nheight = %s\nradial_segments = 14\nrings = 1"
+                   % (fmt(radius), fmt(radius), fmt(height))))
+
+    def cyl_shape(radius, height):
+        return sub("cylshape", (radius, height), ("CylinderShape3D",
+                   "height = %s\nradius = %s" % (fmt(height), fmt(radius))))
+
+    def quad_mesh(w, h):
+        return sub("quadmesh", (w, h), ("QuadMesh", "size = Vector2(%s, %s)" % (fmt(w), fmt(h))))
+
+    materials = set()
     nodes = []
-    def add_body(name, kind, transform, size):
-        sid = size_id(size)
+    def add_body(name, kind, transform, mesh_id, shape_id):
         material, surface = KINDS[kind]
         nodes.append('[node name="%s" type="StaticBody3D" parent="Navigation"]\n'
                      'transform = %s\nmetadata/surface = "%s"\n' % (name, transform, surface))
-        nodes.append('[node name="Mesh" type="MeshInstance3D" parent="Navigation/%s"]\n'
-                     'mesh = SubResource("mesh_%d")\n'
-                     'surface_material_override/0 = ExtResource("m_%s")\n' % (name, sid, material))
+        if mesh_id:
+            materials.add(material)
+            nodes.append('[node name="Mesh" type="MeshInstance3D" parent="Navigation/%s"]\n'
+                         'mesh = SubResource("%s")\n'
+                         'surface_material_override/0 = ExtResource("m_%s")\n' % (name, mesh_id, material))
         nodes.append('[node name="Shape" type="CollisionShape3D" parent="Navigation/%s"]\n'
-                     'shape = SubResource("shape_%d")\n' % (name, sid))
+                     'shape = SubResource("%s")\n' % (name, shape_id))
 
     used = {}
     def unique(name):
@@ -322,25 +463,39 @@ def write_scene():
         return name if used[name] == 1 else "%s%d" % (name, used[name])
 
     for b in boxes:
-        add_body(unique(b["name"]), b["kind"], xform(IDENTITY, b["c"]), b["s"])
+        add_body(unique(b["name"]), b["kind"], xform(IDENTITY, b["c"]),
+                 box_mesh(b["s"]) if b["visible"] else None, box_shape(b["s"]))
     for r in ramps:
         rows, centre, size = ramp_transform(r)
-        add_body(unique(r["name"]), "ramp", xform(rows, centre), size)
+        add_body(unique(r["name"]), "ramp", xform(rows, centre), box_mesh(size), box_shape(size))
+    for c in cyls:
+        add_body(unique(c["name"]), c["kind"], xform(IDENTITY, c["c"]),
+                 cyl_mesh(c["r"], c["h"]), cyl_shape(c["r"], c["h"]))
 
-    materials = sorted(set(m for m, _ in KINDS.values()))
+    decor_nodes = ['[node name="Decor" type="Node3D" parent="."]\n']
+    for d in decor:
+        if d["mesh"] == "box":
+            mesh_id = box_mesh(d["s"])
+        elif d["mesh"] == "cyl":
+            mesh_id = cyl_mesh(d["s"][0], d["s"][1])
+        else:
+            mesh_id = quad_mesh(d["s"][0], d["s"][1])
+        materials.add(d["material"])
+        decor_nodes.append('[node name="%s" type="MeshInstance3D" parent="Decor"]\n'
+                           'transform = %s\nmesh = SubResource("%s")\n'
+                           'surface_material_override/0 = ExtResource("m_%s")\n'
+                           % (unique(d["name"]), xform(d["rows"], d["c"]), mesh_id, d["material"]))
+
     out = []
-    load_steps = len(materials) + 2 * len(sizes) + 1
-    out.append("[gd_scene load_steps=%d format=3]\n" % load_steps)
-    for m in materials:
+    out.append("[gd_scene load_steps=%d format=3]\n" % (len(materials) + len(subs) + 1))
+    for m in sorted(materials):
         out.append('[ext_resource type="Material" path="res://assets/materials/%s.tres" id="m_%s"]' % (m, m))
     out.append("")
-    for key, sid in sizes.items():
-        vec = "Vector3(%s, %s, %s)" % tuple(fmt(v) for v in key)
-        out.append('[sub_resource type="BoxMesh" id="mesh_%d"]\nsize = %s\n' % (sid, vec))
-        out.append('[sub_resource type="BoxShape3D" id="shape_%d"]\nsize = %s\n' % (sid, vec))
+    out.extend(subs)
     out.append('[node name="Arena" type="Node3D"]\n')
     out.append('[node name="Navigation" type="NavigationRegion3D" parent="."]\n')
     out.extend(nodes)
+    out.extend(decor_nodes)
 
     def packed(points):
         return "PackedVector3Array(" + ", ".join(fmt(v) for p in points for v in p) + ")"
@@ -350,10 +505,8 @@ def write_scene():
                % (packed(cover_points), packed(hotspots)))
     for team in (0, 1):
         for i, (x, y, z, yaw) in enumerate(spawns[team]):
-            c, s = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
-            rows = (c, 0, s, 0, 1, 0, -s, 0, c)
             out.append('[node name="Spawn%d_%d" type="Marker3D" parent="Markers" groups=["spawn_team_%d"]]\n'
-                       'transform = %s\n' % (team, i, team, xform(rows, (x, y, z))))
+                       'transform = %s\n' % (team, i, team, xform(_yaw_rows(yaw), (x, y, z))))
         for i, p in enumerate(sniper_spots[team]):
             out.append('[node name="Sniper%d_%d" type="Marker3D" parent="Markers" groups=["sniper_spot_%d"]]\n'
                        'transform = %s\n' % (team, i, team, xform(IDENTITY, p)))
@@ -377,7 +530,8 @@ def ascii_map(cell=2.0):
     order = {"roof": 0, "concrete": 1, "wood": 2, "metal_blue": 3, "metal_red": 3, "metal_green": 3,
              "brick": 4, "plaster": 4}
     for b in sorted(boxes, key=lambda b: order.get(b["kind"], 0)):
-        if b["name"] in ("Ground",) or b["name"].startswith("Perimeter"):
+        if b["name"] in ("Ground",) or b["name"].startswith("Perimeter") or "Lintel" in b["name"] \
+                or b["name"].startswith("Pallet"):
             continue
         x0, x1, z0, z1, y0, y1 = footprint(b)
         k = b["kind"]
@@ -391,6 +545,8 @@ def ascii_map(cell=2.0):
         ax, _, az = r["a"]; bx, _, bz = r["b"]; w = r["width"] / 2
         paint(min(ax, bx) - (w if ax == bx else 0), max(ax, bx) + (w if ax == bx else 0),
               min(az, bz) - (w if az == bz else 0), max(az, bz) + (w if az == bz else 0), "/")
+    for c in cyls:
+        mark(c["c"][0], c["c"][2], "|" if c["kind"] == "pole" else "b")
     for team in (0, 1):
         for (x, y, z, yaw) in spawns[team]: mark(x, z, "A" if team == 0 else "B")
         for (x, y, z) in sniper_spots[team]: mark(x, z, "S")
@@ -414,7 +570,8 @@ the generator and run it again.
 
 Legend: `#` wall, `r` flat roof you can stand on (over a building),
 `C` shipping container / truck (2.6 m, full cover), `c` wooden crate,
-`o` concrete block, low wall or platform, `/` ramp, `A`/`B` spawn points,
+`o` concrete block, low wall or platform, `b` barrels / tyres,
+`|` power pole, `/` ramp, `A`/`B` spawn points,
 `S` sniper spot, `.` open ground.
 
 ## Areas and dimensions
@@ -446,11 +603,11 @@ rotated 180 degrees.)
 
 ## Counts
 
-- Boxes: %d, ramps: %d
+- Boxes: %d, ramps: %d, barrels/tyres/poles: %d, decoration pieces: %d
 - Spawn points: %d per team
 - Cover points for bots: %d
 - Bot objectives: %d
-""" % (ascii_map(), len(boxes), len(ramps), len(spawns[0]), len(cover_points), len(hotspots))
+""" % (ascii_map(), len(boxes), len(ramps), len(cyls), len(decor), len(spawns[0]), len(cover_points), len(hotspots))
     with open(OUT_DOC, "w", newline="\n") as fh:
         fh.write(text)
 

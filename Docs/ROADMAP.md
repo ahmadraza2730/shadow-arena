@@ -12,8 +12,9 @@ your eyes/hands on a real PC, [ ] not started.
 - [x] 7. TDM mode: teams, score, timer, safe spawns, scoreboard, kill feed
 - [x] 8. Map gray-box (120 x 120 m) - see MAP.md
 - [x] 9. Bot AI: navigation, cover, aiming, roles, shared sightings
-- [~] 10. Art pass: procedural materials, sky, sun, fog, bloom, 3 weather presets.
-        No imported models/textures yet, no baked lightmaps.
+- [~] 10. Art pass: generated texture sets (colour/normal/roughness) on every
+        surface, set dressing, cloud sky, sun, fog, bloom, 3 weather presets.
+        No imported models yet, no baked lightmaps.
 - [~] 11. Animation, sound, VFX: all procedural placeholders (box soldier,
         box guns, synthesised sounds, pooled particles/decals/tracers).
 - [x] 12. HUD, main menu, pause menu, settings, end screen
